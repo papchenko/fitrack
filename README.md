@@ -414,47 +414,6 @@ The architecture is designed to make it possible to continue expanding FiTrack w
 
 ---
 
-# 🏗️ Architecture
-
-FiTrack follows a modular React architecture with separate areas for:
-
-```text
-src/
-├── components/
-├── pages/
-├── contexts/
-├── hooks/
-├── utils/
-├── services/
-├── trackers/
-├── assets/
-└── styles/
-```
-
-The exact structure may evolve as the platform continues to grow.
-
-Feature-specific functionality is separated where possible to make the application easier to maintain and extend.
-
----
-
-# 📂 Main Platform Areas
-
-FiTrack currently includes functionality around:
-
-- `/step` — Step Counter
-- `/lens` — Activity / fitness tools
-- `/races` — Team Races
-- `/club` — Community
-- `/premium` — Premium
-- `/weight-control` — Weight Control
-- `/running-plans` — Running Plans
-- `/personal-account` — Personal Account
-- `/conquer` — Location-based challenges
-
-Additional activity trackers and platform functionality are integrated throughout the application.
-
----
-
 # 🔥 Activity Tracking Architecture
 
 FiTrack uses dedicated trackers for different activity types.
