@@ -1,37 +1,66 @@
+
 import { useState } from "react";
-import { auth, db, googleProvider } from "../../firebase";
 import { signInWithPopup } from "firebase/auth";
-import { doc, getDoc, setDoc } from "firebase/firestore";
+
+import { auth, googleProvider } from "../../firebase";
+import { ensureUserProfile } from "./profileSetup";
+import { authErrorMessage } from "./authErrors";
 
 export default function GoogleLoginButton({ onSuccess }) {
-  const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
 
-  const handleGoogleSignIn = async () => {
-    setLoading(true);
-    try {
-      const result = await signInWithPopup(auth, googleProvider);
-      const user = result.user;
+    const handleGoogleSignIn = async () => {
+        if (loading) return;
 
-      const email = user.email;
-      const username = email.split("@")[0];
+        setLoading(true);
+        setError("");
 
-      const usernameDoc = await getDoc(doc(db, "usernames", username));
-      if (!usernameDoc.exists()) {
-        await setDoc(doc(db, "usernames", username), { email });
-        await setDoc(doc(db, "users", user.uid), { username, email });
-      }
+        try {
+            const result = await signInWithPopup(
+                auth,
+                googleProvider
+            );
 
-      onSuccess();
-    } catch (err) {
-      alert(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+            const firebaseUser = result.user;
 
-  return (
-    <button className="google-btn" onClick={handleGoogleSignIn} disabled={loading}>
-      {loading ? "Loading..." : "Sign in with Google"}
-    </button>
-  );
+            const email = firebaseUser.email || "";
+
+            const username =
+                firebaseUser.displayName?.trim() ||
+                email.split("@")[0] ||
+                "FiTrack User";
+
+            await ensureUserProfile(firebaseUser, username);
+
+            onSuccess?.();
+        } catch (err) {
+            console.error("Google authentication:", err);
+
+            setError(authErrorMessage(err));
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    return (
+        <div className="ft-google-auth">
+            {error && (
+                <p className="ft-auth-error" role="alert">
+                    {error}
+                </p>
+            )}
+
+            <button
+                type="button"
+                className="google-btn"
+                onClick={handleGoogleSignIn}
+                disabled={loading}
+            >
+                {loading
+                    ? "Connecting..."
+                    : "Sign in with Google"}
+            </button>
+        </div>
+    );
 }

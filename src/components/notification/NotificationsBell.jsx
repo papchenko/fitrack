@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react";
+import { createPortal } from "react-dom";
 import { db } from "../../firebase";
 import {
   collection,
@@ -9,9 +10,10 @@ import {
   query,
   where,
 } from "firebase/firestore";
-import { MdOutlineNotifications } from "react-icons/md";
 import { FaRegBell } from "react-icons/fa6";
 import { useAuth } from "../account/AuthContext";
+import { FiMessageCircle } from "react-icons/fi";
+import { FaArrowCircleLeft, FaWindowClose } from "react-icons/fa";
 
 import "./notifications.scss";
 
@@ -84,16 +86,6 @@ export default function NotificationsBell() {
     setUnread([...announcements, ...personalNotifs]);
   }, [announcements, personalNotifs]);
 
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (popupRef.current && !popupRef.current.contains(e.target)) {
-        setShowPopup(false);
-      }
-    };
-    if (showPopup) document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [showPopup]);
-
   const markAsRead = async (notif) => {
     if (notif.type === "announcement") {
       const userRef = doc(db, "users", user.uid);
@@ -114,42 +106,85 @@ export default function NotificationsBell() {
       <div className="bell-icon" onClick={() => setShowPopup((prev) => !prev)}>
         {/* <MdOutlineNotifications className="text-white fs-1" /> */}
        < FaRegBell />
+       {/* <FaRegMessage /> */}
+       {/* <FaMessage /> */}
         {unread.length > 0 && <span className="unread-badge"></span>}
       </div>
+      {showPopup &&
+  createPortal(
+    <>
+      <div
+        className="notifications-backdrop"
+        onClick={() => setShowPopup(false)}
+      />
+      <aside className="notifications-drawer">
+  <header className="notifications-header">
+    {/* <h5 className="notifications-title">Notifications</h5> */}
 
-      {showPopup && (
-        <div className="notifications-popup">
-          <div className="popup-header">
-            <h5>Notifications</h5>
-            <button className="close-btn" onClick={() => setShowPopup(false)}>
-              ✕
-            </button>
-          </div>
+    <button
+      type="button"
+      className="notifications-close"
+      onClick={() => setShowPopup(false)}
+      aria-label="Close notifications"
+    >
+      <FaArrowCircleLeft />
+    </button>
+  </header>
 
-          <div className="popup-body">
-            {unread.length === 0 && <p className="empty">All notifications read</p>}
-            {/* <div className="notifications-scroll">
-              {unread.map((n) => (
-                <div key={n.id} className="announcement" onClick={() => markAsRead(n)}>
-                  <strong>{n.title}</strong>
-                  <p>{n.message}</p>
-                </div>
-              ))}
-            </div> */}
-            <div className="notifications-scroll">
-              {unread.map((n) => (
-                <div key={n.id} className="announcement" onClick={() => markAsRead(n)}>
-                  <div className="notif-header">
-                    <strong>{n.title}</strong>
-                    {!n.read && <span className="new-badge">NEW</span>}
-                  </div>
-                  <p>{n.message}</p>
-                </div>
-              ))}
-            </div>
-          </div>
+  <div className="notifications-body">
+    {unread.length === 0 ? (
+      <div className="notifications-empty">
+        <div className="notifications-empty-icon">
+          <FaRegBell />
         </div>
-      )}
+
+        <h4>You're all caught up</h4>
+
+        <p>You don't have any new notifications.</p>
+      </div>
+    ) : (
+      <div className="notifications-list">
+        {unread.map((notification) => (
+          <button
+            key={notification.id}
+            type="button"
+            className="notification-item"
+            onClick={() => markAsRead(notification)}
+          >
+            <span className="notification-icon">
+              {notification.type === "announcement" ? (
+                <FaRegBell />
+              ) : (
+                <FiMessageCircle />
+              )}
+            </span>
+
+            <span className="notification-content">
+              <span className="notification-top">
+                <strong>
+                  {notification.title || "Notification"}
+                </strong>
+
+                {!notification.read && (
+                  <span className="notification-new">
+                    NEW
+                  </span>
+                )}
+              </span>
+
+              <span className="notification-message">
+                {notification.message}
+              </span>
+            </span>
+          </button>
+        ))}
+      </div>
+    )}
+  </div>
+</aside>
+    </>,
+    document.body
+  )}
     </div>
   );
 }

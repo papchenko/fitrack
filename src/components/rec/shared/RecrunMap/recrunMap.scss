@@ -1,0 +1,139 @@
+
+.recrun-map-root {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  overflow: hidden;
+  background: #171b20;
+  isolation: isolate;
+}
+
+.recrun-map-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.recrun-map-marker {
+  width: 22px;
+  height: 22px;
+  border: 4px solid #fff;
+  border-radius: 50%;
+  background: #db3206;
+  box-shadow:
+    0 0 0 7px rgba(219, 50, 6, 0.15),
+    0 4px 18px rgba(0, 0, 0, 0.4);
+}
+
+.recrun-map-message,
+.recrun-map-error {
+  position: absolute;
+  z-index: 5;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: #191c22;
+  color: #fff;
+  font-size: 13px;
+  text-align: center;
+}
+
+.recrun-map-error {
+  inset: auto 12px 12px;
+  border: 1px solid #db320655;
+  border-radius: 10px;
+  background: #251b1b;
+}
+
+.recrun-map-root .maplibregl-ctrl-group {
+  overflow: hidden;
+  border: 1px solid #ffffff24;
+  border-radius: 12px;
+  background: rgba(24, 27, 33, 0.95);
+  box-shadow: 0 8px 25px #0004;
+}
+
+.recrun-map-root .maplibregl-ctrl-group button {
+  width: 38px;
+  height: 38px;
+  background: transparent;
+  color: #fff;
+}
+
+.recrun-map-root .maplibregl-ctrl-group button:hover {
+  background: #ffffff16;
+}
+
+.recrun-map-root .maplibregl-ctrl-icon {
+  filter: invert(1);
+}
+
+.recrun-map-root .maplibregl-ctrl-attrib {
+  font-size: 10px;
+}
+
+.recrun-map-root .maplibregl-ctrl-attrib a {
+  color: inherit;
+}
+.recrun-map-root {
+  .maplibregl-ctrl-attrib.maplibregl-compact {
+    display: none !important;
+    align-items: center;
+    min-height: 24px;
+    padding: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  .maplibregl-ctrl-attrib.maplibregl-compact:not(
+      .maplibregl-compact-show
+    ) {
+    .maplibregl-ctrl-attrib-inner {
+      display: none !important;
+    }
+  }
+
+  .maplibregl-ctrl-attrib-button {
+    opacity: 0;
+    cursor: pointer;
+  }
+}
+
+
+.recrun-map-loading {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+
+    background: #171b20;
+    color: #aab0b8;
+
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.recrun-map-loading__spinner {
+    width: 26px;
+    height: 26px;
+
+    border: 3px solid rgba(255, 255, 255, 0.12);
+    border-top-color: #db3206;
+    border-radius: 50%;
+
+    animation: recrun-map-spin 0.8s linear infinite;
+}
+
+@keyframes recrun-map-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

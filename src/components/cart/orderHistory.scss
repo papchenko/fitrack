@@ -1,44 +1,388 @@
-.order-history {
-  .order-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  .order-item {
-    border: 1px solid #222;
-    transition: all 0.25s ease;
-    &:hover {
-      border-color: #db31064d;
-    }
-    .order-products {
-      img {
-        object-fit: contain !important;
-        border: 1px solid #333;
-    }
+/* =========================================================
+   RECRUN ORDER HISTORY
+   ========================================================= */
+
+.order-history-wrapper {
+  width: 100%;
+  margin-top: 28px !important;
 }
-}
-@media (max-width: 768px) {
-    .order-item {
-        padding: 1rem;
-        font-size: 0.9rem;
-    }
-    .order-products img {
-      width: 50px;
-      height: 50px;
-    }
-  }
-}
+
+/* =========================================================
+   TOGGLE BUTTON
+   ========================================================= */
+
 .toggle-history-btn {
-  background: transparent;
-  color: #fff;
-  border: 1px solid #333;
-  border-radius: 10px;
-  padding: 8px 20px;
-  font-weight: 600;
-  &:hover{
-    border: 1px solid #333;
-    }
-    &.active {
-    border: 1px solid #333;
-    }
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 20px;
+  border: 1px solid rgba(248, 250, 252, 0.09) !important;
+  border-radius: 10px !important;
+  background: rgba(255, 255, 255, 0.025) !important;
+  color: rgba(248, 250, 252, 0.62) !important;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.025);
+  transition:
+    color 0.22s ease,
+    background 0.22s ease,
+    border-color 0.22s ease,
+    transform 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+.toggle-history-btn:hover {
+  border-color: rgba(219, 50, 6, 0.3) !important;
+  background: rgba(219, 50, 6, 0.055) !important;
+  color: #ff5420 !important;
+  transform: translateY(-1px);
+  box-shadow:
+    0 10px 26px rgba(0, 0, 0, 0.14),
+    0 0 0 1px rgba(219, 50, 6, 0.025);
+}
+
+.toggle-history-btn.active {
+  border-color: rgba(219, 50, 6, 0.34) !important;
+  background: rgba(219, 50, 6, 0.07) !important;
+  color: #ff5420 !important;
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(219, 50, 6, 0.06);
+}
+
+.toggle-history-btn:active {
+  transform: translateY(0);
+}
+
+.toggle-history-btn:focus-visible {
+  display: none !important;
+}
+
+/* =========================================================
+   HISTORY CONTAINER
+   ========================================================= */
+
+.order-history {
+  position: relative;
+  margin-top: 22px !important;
+  padding: 22px;
+  border: 1px solid rgba(248, 250, 252, 0.065);
+  border-radius: 18px;
+}
+
+/* =========================================================
+   ORDER LIST
+   ========================================================= */
+
+.order-history .order-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* =========================================================
+   ORDER CARD
+   ========================================================= */
+
+.order-history .order-item {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 0 !important;
+  padding: 18px !important;
+  border: 1px solid rgba(248, 250, 252, 0.065) !important;
+  border-radius: 14px !important;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(31, 37, 47, 0.92),
+      rgba(19, 24, 31, 0.96)
+    ) !important;
+  color: #f8fafc !important;
+  box-shadow:
+    0 8px 26px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.02);
+  transition:
+    transform 0.22s ease,
+    border-color 0.22s ease,
+    background 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+
+
+.order-history .order-item:hover {
+
+}
+
+.order-history .order-item:hover::before {
+  opacity: 1;
+}
+
+/* =========================================================
+   ORDER HEADER
+   ========================================================= */
+
+.order-history .order-item > .d-flex {
+  min-height: 42px;
+  padding-bottom: 14px;
+  // border-bottom: 1px solid rgba(248, 250, 252, 0.055);
+}
+
+.order-history .order-item strong {
+  color: rgba(248, 250, 252, 0.46);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.order-history .order-item > .d-flex > div {
+  color: rgba(248, 250, 252, 0.82);
+  font-size: 0.78rem;
+}
+
+.order-history .order-item .text-secondary {
+  color: rgba(248, 250, 252, 0.35) !important;
+}
+
+.order-history .order-item > .d-flex small {
+  display: inline-block;
+  margin-top: 5px;
+  font-size: 0.66rem;
+}
+
+/* =========================================================
+   ORDER TOTAL
+   ========================================================= */
+
+.order-history .order-item > .d-flex > span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 10px;
+  border: 1px solid rgba(219, 50, 6, 0.14);
+  border-radius: 8px;
+  background: rgba(219, 50, 6, 0.055);
+  color: #ff5420 !important;
+  font-size: 0.82rem;
+  font-weight: 800 !important;
+  white-space: nowrap;
+}
+
+/* =========================================================
+   PRODUCTS
+   ========================================================= */
+
+.order-history .order-products {
+  margin-top: 15px !important;
+}
+
+.order-history .order-products > div {
+  position: relative;
+  min-height: 74px;
+  margin-bottom: 0 !important;
+  padding: 10px 0 !important;
+  border-bottom: 1px solid rgba(248, 250, 252, 0.045) !important;
+}
+
+.order-history .order-products > div:last-child {
+  padding-bottom: 0 !important;
+  border-bottom: 0 !important;
+}
+
+.order-history .order-products img {
+  width: 58px;
+  height: 58px;
+  flex-shrink: 0;
+  object-fit: contain !important;
+  padding: 4px;
+  border: 1px solid rgba(248, 250, 252, 0.075) !important;
+  border-radius: 10px !important;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.order-history .order-products > div > div {
+  min-width: 0;
+}
+
+.order-history .order-products .fw-semibold {
+  overflow: hidden;
+  color: rgba(248, 250, 252, 0.85);
+  font-size: 0.77rem;
+  font-weight: 700;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.order-history .order-products small {
+  display: block;
+  max-width: 520px;
+  margin-top: 3px;
+  overflow: hidden;
+  color: rgba(248, 250, 252, 0.34) !important;
+  font-size: 0.65rem;
+  line-height: 1.4;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* =========================================================
+   PRODUCT META
+   ========================================================= */
+
+.order-history .order-products .small {
+  margin-top: 6px !important;
+  color: rgba(248, 250, 252, 0.4);
+  font-size: 0.63rem !important;
+}
+
+.order-history .order-products .text-info {
+  color: #60a5fa !important;
+  font-weight: 650;
+}
+
+.order-history .order-products .text-info::before {
+  content: "";
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  margin-right: 6px;
+  border-radius: 50%;
+  background: #60a5fa;
+  vertical-align: middle;
+  box-shadow: 0 0 8px rgba(96, 165, 250, 0.35);
+}
+
+/* =========================================================
+   LOADING / EMPTY / AUTH STATES
+   ========================================================= */
+
+.order-history > .text-center {
+  padding: 26px 20px !important;
+  border: 1px solid rgba(248, 250, 252, 0.06);
+  border-radius: 13px !important;
+  background: rgba(255, 255, 255, 0.025) !important;
+  color: rgba(248, 250, 252, 0.45) !important;
+}
+
+.order-history > .text-center p {
+  margin: 0;
+  color: rgba(248, 250, 252, 0.45) !important;
+  font-size: 0.74rem;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 768px) {
+  .order-history-wrapper {
+    margin-top: 22px !important;
+  }
+
+  .toggle-history-btn {
+    width: 100%;
+    min-height: 43px;
+  }
+
+  .order-history {
+    margin-top: 16px !important;
+    padding: 13px;
+    border-radius: 15px;
+  }
+
+  .order-history .order-item {
+    padding: 15px !important;
+    border-radius: 13px !important;
+  }
+
+  .order-history .order-item > .d-flex {
+    align-items: flex-start !important;
+    gap: 10px;
+  }
+
+  .order-history .order-item > .d-flex > div {
+    min-width: 0;
+  }
+
+  .order-history .order-item > .d-flex > span {
+    flex-shrink: 0;
+    min-height: 32px;
+    padding-inline: 8px;
+    font-size: 0.74rem;
+  }
+
+  .order-history .order-products {
+    margin-top: 10px !important;
+  }
+
+  .order-history .order-products > div {
+    gap: 10px !important;
+  }
+
+  .order-history .order-products img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .order-history .order-products .fw-semibold {
+    font-size: 0.73rem;
+  }
+
+  .order-history .order-products small {
+    max-width: 100%;
+    font-size: 0.61rem;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+  .order-history {
+    padding: 10px;
+  }
+
+  .order-history .order-item {
+    padding: 13px !important;
+  }
+
+  .order-history .order-item > .d-flex {
+    flex-wrap: wrap;
+  }
+
+  .order-history .order-item > .d-flex > span {
+    margin-left: auto;
+  }
+
+  .order-history .order-products img {
+    width: 46px;
+    height: 46px;
+  }
+
+  .order-history .order-products > div {
+    min-height: 62px;
+  }
+
+  .order-history .order-products .small {
+    font-size: 0.6rem !important;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .toggle-history-btn,
+  .order-history .order-item {
+    transition: none;
+  }
 }

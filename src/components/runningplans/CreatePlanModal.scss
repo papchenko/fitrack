@@ -1,0 +1,155 @@
+.plan-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 999999;
+
+  padding: 20px;
+
+  backdrop-filter: blur(6px);
+}
+
+.plan-modal {
+  position: relative;
+
+  width: 100%;
+  max-width: 560px;
+
+  background: #151515;
+
+  border-radius: 18px;
+
+  padding: 30px;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
+
+  animation: modalShow 0.25s ease;
+}
+
+.plan-modal h2 {
+  margin-bottom: 8px;
+  color: white;
+}
+
+.plan-modal-subtitle {
+  color: #9b9b9b;
+  margin-bottom: 25px;
+}
+
+.plan-modal .form-label {
+  color: white;
+  margin-bottom: 8px;
+}
+
+.plan-modal .form-select,
+.plan-modal .form-control {
+  background: #222;
+
+  border: 1px solid #333;
+
+  color: white;
+
+  height: 50px;
+}
+
+.plan-modal .form-select:focus,
+.plan-modal .form-control:focus {
+  background: #222;
+
+  color: white;
+
+  border-color: var(--first-color);
+
+  box-shadow: none;
+}
+
+.plan-modal-actions {
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 12px;
+
+  margin-top: 25px;
+
+  flex-wrap: wrap;
+}
+
+.plan-modal-close {
+  position: absolute;
+
+  top: 15px;
+
+  right: 18px;
+
+  width: 38px;
+
+  height: 38px;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: #262626;
+
+  color: white;
+
+  font-size: 26px;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.plan-modal-close:hover {
+  background: var(--first-color);
+
+  transform: rotate(90deg);
+}
+
+@keyframes modalShow {
+  from {
+    opacity: 0;
+
+    transform: translateY(25px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 768px) {
+  .plan-modal {
+    padding: 22px;
+
+    border-radius: 16px;
+  }
+
+  .plan-modal-actions {
+    flex-direction: column;
+  }
+
+  .plan-modal-actions button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .plan-modal {
+    padding: 18px;
+  }
+
+  .plan-modal h2 {
+    font-size: 22px;
+  }
+}

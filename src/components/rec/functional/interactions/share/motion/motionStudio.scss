@@ -1,0 +1,277 @@
+/* FiTrack Motion Studio — responsive editor, desktop and mobile */
+.motion-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2147483647;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    background: rgba(0, 0, 0, .94);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    overscroll-behavior: contain;
+}
+.motion-overlay, .motion-overlay * { box-sizing: border-box; }
+.motion-dialog {
+    display: flex;
+    flex-direction: column;
+    width: min(1180px, 100%);
+    height: min(820px, calc(100dvh - 32px));
+    max-height: calc(100dvh - 32px);
+    min-height: 0;
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 18px;
+    background: #171b20;
+    color: #fff;
+    box-shadow: 0 25px 80px rgba(0,0,0,.65);
+    font-family: Arial, Helvetica, sans-serif;
+}
+.motion-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 0 0 auto;
+    min-width: 0;
+    gap: 12px;
+    padding: 13px 20px;
+    border-bottom: 1px solid rgba(255,255,255,.1);
+    > div { min-width: 0; }
+    small { display: block; color: #ff531c; letter-spacing: 1.5px; font-size: 10px; font-weight: 800; }
+    h2 { display: flex; flex-wrap: wrap; align-items: center; gap: 9px; margin: 4px 0 0; font-size: 19px; line-height: 1.2; }
+    button { flex: 0 0 36px; width: 36px; height: 36px; border: 1px solid #ffffff20; border-radius: 9px; background: #292f37; color: white; font-size: 24px; cursor: pointer; }
+}
+.motion-version { color: #ff531c; background: #ff531c18; border: 1px solid #ff531c55; border-radius: 5px; padding: 4px 7px; font-size: 9px; letter-spacing: 1px; }
+.motion-content {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 370px);
+    gap: 18px;
+    flex: 1 1 auto;
+    min-width: 0;
+    min-height: 0;
+    padding: 18px;
+    overflow: hidden;
+}
+.motion-preview-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    min-width: 0;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0 4px 8px;
+    scrollbar-width: thin;
+}
+.motion-preview-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 6px;
+    width: 100%;
+    color: #adb5c0;
+    font-size: 10px;
+    letter-spacing: .7px;
+    strong { color: #ff531c; }
+}
+.motion-canvas-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+    canvas {
+        display: block;
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        max-height: min(55dvh, 540px);
+        object-fit: contain;
+        background: #11151c;
+        box-shadow: 0 10px 35px #0006;
+    }
+}
+.motion-timeline {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 540px;
+    min-width: 0;
+    color: #aab0b8;
+    font-size: 12px;
+    input { flex: 1 1 auto; min-width: 0; width: 100%; accent-color: #ff531c; }
+    span { flex: 0 0 auto; font-variant-numeric: tabular-nums; white-space: nowrap; }
+}
+.motion-playback {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    max-width: 540px;
+    button { flex: 0 1 auto; min-width: 85px; }
+    .motion-play { background: #db3206; border-color: #db3206; }
+}
+.motion-playback button, .motion-options button, .motion-back {
+    border: 1px solid #ffffff24;
+    border-radius: 9px;
+    background: #292f37;
+    color: white;
+    padding: 10px 12px;
+    font-size: 12px;
+    line-height: 1.25;
+    cursor: pointer;
+}
+.motion-preview-meta { max-width: 100%; color: #939da8; font-size: 11px; text-align: center; overflow-wrap: anywhere; }
+.motion-settings {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+    border: 1px solid #ffffff18;
+    border-radius: 12px;
+    background: #1c2128;
+}
+.motion-tabs {
+    display: flex;
+    flex: 0 0 auto;
+    min-width: 0;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    border-bottom: 1px solid #ffffff18;
+    button {
+        flex: 1 0 auto;
+        min-width: 60px;
+        border: 0;
+        border-bottom: 2px solid transparent;
+        background: transparent;
+        color: #aeb5bd;
+        padding: 13px 8px;
+        font-size: 11px;
+        font-weight: 700;
+        white-space: nowrap;
+        cursor: pointer;
+        &.active { color: #ff531c; border-bottom-color: #ff531c; background: #ff531c0b; }
+    }
+}
+.motion-settings-body {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    min-width: 0;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 16px;
+    scrollbar-width: thin;
+    h3 { margin: 8px 0 0; color: #b5bac2; font-size: 11px; line-height: 1.4; text-transform: uppercase; letter-spacing: .7px; }
+}
+.motion-options { display: flex; flex-wrap: wrap; gap: 7px; min-width: 0; }
+.motion-options button { min-width: 0; white-space: normal; overflow-wrap: anywhere; }
+.motion-options button.active { background: #db3206; border-color: #db3206; }
+.motion-options button:disabled { opacity: .4; cursor: not-allowed; }
+.motion-style-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; min-width: 0; }
+.motion-style-grid button {
+    display: flex; flex-direction: column; align-items: flex-start; gap: 5px;
+    min-width: 0; padding: 12px; border: 1px solid #ffffff1f; border-radius: 10px;
+    background: #292f37; color: white; text-align: left; cursor: pointer;
+    strong { font-size: 12px; line-height: 1.35; overflow-wrap: anywhere; }
+    small { color: #aab0b8; font-size: 10px; line-height: 1.4; overflow-wrap: anywhere; }
+    &.active { border-color: #ff531c; background: #ff531c1e; }
+    &:disabled { opacity: .4; cursor: not-allowed; }
+}
+.motion-preset-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.motion-preset-grid button { min-width: 0; padding: 10px 5px; border: 1px solid #ffffff25; border-radius: 8px; background: #292f37; color: white; font-size: 11px; text-transform: capitalize; cursor: pointer; }
+.motion-toggle { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-width: 0; padding: 8px 0; border-bottom: 1px solid #ffffff0c; color: #d7dbe1; font-size: 12px; line-height: 1.4; cursor: pointer; overflow-wrap: anywhere; }
+.motion-toggle input { flex: 0 0 17px; width: 17px; height: 17px; accent-color: #ff531c; }
+.motion-text-input { display: block; width: 100%; min-width: 0; min-height: 40px; border: 1px solid #ffffff25; border-radius: 8px; padding: 10px; background: #11151c; color: white; outline: none; }
+.motion-text-input:focus { border-color: #ff531c; }
+.motion-range { display: block; width: 100%; min-width: 0; accent-color: #ff531c; }
+.motion-colors { display: flex; flex-wrap: wrap; align-items: center; gap: 9px; min-width: 0; }
+.motion-colors button { flex: 0 0 29px; width: 29px; height: 29px; border: 2px solid transparent; border-radius: 50%; cursor: pointer; }
+.motion-colors button.active { outline: 2px solid #fff; outline-offset: 2px; }
+.motion-colors input { flex: 0 0 34px; width: 34px; height: 34px; padding: 0; border: 0; background: none; cursor: pointer; }
+.motion-bottom-actions {
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+    padding: 12px 16px;
+    border-top: 1px solid #ffffff18;
+    background: #1c2128;
+}
+.motion-export { width: 100%; border: 0; border-radius: 9px; padding: 12px; color: #fff; background: #db3206; cursor: pointer; font-size: 13px; font-weight: 700; }
+.motion-export:disabled, .motion-back:disabled { opacity: .5; cursor: not-allowed; }
+.motion-secondary-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.motion-secondary-actions button, .motion-cancel { min-width: 0; border: 1px solid #ffffff25; border-radius: 8px; background: #292f37; color: white; padding: 10px 7px; cursor: pointer; font-size: 12px; line-height: 1.35; overflow-wrap: anywhere; }
+.motion-secondary-actions button:disabled { opacity: .4; cursor: not-allowed; }
+.motion-cancel { border-color: #ff531c; color: #ff8d70; }
+.motion-back { width: 100%; }
+.motion-note { margin: 0; color: #aab0b8; font-size: 12px; line-height: 1.5; overflow-wrap: anywhere; }
+.motion-export-progress { position: relative; width: 100%; height: 24px; flex: 0 0 auto; overflow: hidden; border-radius: 6px; background: #ffffff16; }
+.motion-export-progress > div { height: 100%; background: #ff531c; transition: width .1s linear; }
+.motion-export-progress span { position: absolute; inset: 0; display: grid; place-items: center; font-size: 11px; font-weight: 700; }
+
+/* Tablet: stacked editor, one continuous scroll surface */
+@media (max-width: 850px) {
+    .motion-overlay { padding: 10px; }
+    .motion-dialog { width: 100%; height: calc(100dvh - 20px); max-height: calc(100dvh - 20px); border-radius: 14px; }
+    .motion-content { display: flex; flex-direction: column; gap: 16px; padding: 14px; overflow-y: auto; overflow-x: hidden; overscroll-behavior: contain; }
+    .motion-preview-area { flex: 0 0 auto; overflow: visible; padding: 0; }
+    .motion-canvas-wrap canvas { max-height: min(46dvh, 440px); }
+    .motion-settings { flex: 0 0 auto; overflow: visible; min-height: auto; }
+    .motion-settings-body { flex: 0 0 auto; min-height: auto; overflow: visible; }
+    .motion-bottom-actions { flex: 0 0 auto; }
+}
+@media (max-width: 480px) {
+    .motion-overlay { padding: max(6px, env(safe-area-inset-top)) 6px max(6px, env(safe-area-inset-bottom)); }
+    .motion-dialog { height: 100%; max-height: 100%; border-radius: 12px; }
+    .motion-header { padding: 10px 12px; }
+    .motion-header h2 { font-size: 16px; }
+    .motion-header small { font-size: 9px; letter-spacing: 1px; }
+    .motion-content { gap: 14px; padding: 10px; }
+    .motion-canvas-wrap canvas { max-height: 40dvh; }
+    .motion-timeline { gap: 6px; font-size: 11px; }
+    .motion-playback { gap: 6px; }
+    .motion-playback button { flex: 1 1 0; min-width: 0; padding: 10px 5px; font-size: 11px; }
+    .motion-settings-body { gap: 10px; padding: 12px; }
+    .motion-tabs button { min-width: 66px; padding: 12px 7px; font-size: 10px; }
+    .motion-style-grid button { padding: 10px; }
+    .motion-bottom-actions { padding: 12px; }
+}
+@media (max-width: 340px) {
+    .motion-style-grid { grid-template-columns: minmax(0, 1fr); }
+    .motion-secondary-actions { grid-template-columns: minmax(0, 1fr); }
+    .motion-header h2 { font-size: 14px; }
+}
+@media (max-height: 600px) and (min-width: 851px) {
+    .motion-header { padding: 8px 16px; }
+    .motion-content { padding: 10px; gap: 12px; }
+    .motion-canvas-wrap canvas { max-height: 45dvh; }
+    .motion-settings-body { padding: 10px; }
+    .motion-bottom-actions { padding: 8px 12px; }
+}
+.motion-play {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+    svg {
+        font-size: 16px;
+        flex-shrink: 0;
+    }
+}

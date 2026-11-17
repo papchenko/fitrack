@@ -14,7 +14,7 @@ const OrderHistory = () => {
 
   const fetchOrders = async () => {
     if (!user) {
-      toast.info("Please sign in to view your orders", { theme: "dark" });
+      toast.info("Please sign in to view your orders");
       return;
     }
 
@@ -31,7 +31,7 @@ const OrderHistory = () => {
       setOrders(data);
     } catch (error) {
       console.error("Error fetching orders:", error);
-      toast.error("Failed to load order history");
+      toast.error("Failed to load order history.");
     } finally {
       setLoading(false);
     }

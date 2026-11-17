@@ -1,0 +1,681 @@
+/* WorkoutTracker — visual language of Recrun StepCounter / CyclingTracker */
+.workout-tracker {
+  --workout-orange: #fc4c02;
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  width: 100vw;
+  height: 100dvh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: #000;
+  color: #fff;
+  font-family: inherit;
+  box-sizing: border-box;
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+  button {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .workout-page {
+    min-height: 100dvh;
+    padding: 30px 15px 85px;
+    background: #ffffff11;
+    border-radius: 20px;
+  }
+  .workout-container {
+    width: min(100%, 800px);
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    color: #fff;
+  }
+  .workout-heading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-size: clamp(21px, 4vw, 27px);
+    font-weight: 800;
+    line-height: 1.3;
+    color: #fff;
+  }
+  .workout-heading svg {
+    color: var(--workout-orange);
+    flex-shrink: 0;
+  }
+  .workout-subtitle {
+    color: #c5c5c5;
+    margin: 9px 0 28px;
+    font-size: 15px;
+  }
+
+  .workout-settings {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    margin: 20px 0 30px;
+    text-align: left;
+  }
+  .workout-settings label {
+    display: block;
+    min-width: 0;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .workout-settings select,
+  .workout-settings input {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    margin-top: 8px;
+    padding: 12px 13px;
+    background: #222;
+    border: 1px solid #555;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 15px;
+    outline: none;
+  }
+  .workout-settings select option {
+    background: #222;
+    color: #fff;
+  }
+  .workout-settings select:focus,
+  .workout-settings input:focus {
+    border-color: var(--workout-orange);
+  }
+  .workout-settings input:disabled {
+    opacity: 0.65;
+  }
+  .workout-settings small {
+    grid-column: 1/-1;
+    color: #aaa;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  /* Same Record / Pause / Stop geometry as StepCounter */
+  .workout-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin: 30px 0 14px;
+  }
+  .workout-btn {
+    width: 46px;
+    height: 46px;
+    flex: 0 0 auto;
+    border-radius: 50%;
+    border: 0;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    touch-action: none;
+  }
+  .workout-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  .workout-btn.record {
+    background: transparent;
+    border: 4px solid var(--workout-orange);
+  }
+  .workout-btn.record .dot {
+    width: 18px;
+    height: 18px;
+    background: var(--workout-orange);
+    border-radius: 50%;
+  }
+  .workout-btn.pause {
+    background: #222;
+    color: #fff;
+  }
+  .workout-btn.pause.resume {
+    background: var(--workout-orange);
+  }
+  .workout-btn.stop {
+    position: relative;
+    width: 80px;
+    border-radius: 8px;
+    background: #333;
+    color: #fff;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .workout-btn.stop .stop-progress {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    background: conic-gradient(
+      var(--workout-orange) var(--stop-progress),
+      transparent var(--stop-progress)
+    );
+    z-index: -1;
+  }
+  .workout-btn.stop .stop-icon {
+    position: relative;
+    z-index: 1;
+  }
+  .workout-btn:not(:disabled):hover {
+    filter: brightness(1.16);
+    transform: scale(1.05);
+  }
+  .workout-btn:not(:disabled):active {
+    transform: scale(0.96);
+  }
+  .workout-stop-hint {
+    display: block;
+    color: #aaa;
+    font-size: 12px;
+    margin-bottom: 22px;
+  }
+
+  .workout-timer {
+    color: #fff;
+    font-size: clamp(38px, 9vw, 72px);
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    margin: 22px 0 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    line-height: 1.2;
+  }
+  .workout-timer svg {
+    font-size: 23px;
+    color: var(--workout-orange);
+    flex-shrink: 0;
+  }
+  .workout-stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+  .workout-stat {
+    background: #ffffff0b;
+    border: 1px solid #ffffff24;
+    border-radius: 14px;
+    padding: 22px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-width: 0;
+    color: #fff;
+  }
+  .workout-stat > svg {
+    color: var(--workout-orange);
+    font-size: 22px;
+  }
+  .workout-stat small {
+    color: #bbb;
+    font-size: 13px;
+  }
+  .workout-stat strong {
+    color: #fff;
+    font-size: clamp(23px, 5vw, 31px);
+    font-weight: 800;
+    overflow-wrap: anywhere;
+    line-height: 1.3;
+  }
+  .workout-stat strong span {
+    font-size: 14px;
+    font-weight: 500;
+    color: #bbb;
+  }
+  .workout-stat .workout-stat-label {
+    font-size: clamp(16px, 3vw, 19px);
+  }
+  .workout-disclaimer {
+    font-size: 12px;
+    color: #aaa;
+    line-height: 1.6;
+    margin: 22px 0;
+  }
+
+  /* Clearly visible Back and Fullscreen buttons */
+  .workout-back,
+  .workout-expand {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 46px;
+    margin: 12px 6px;
+    padding: 12px 22px;
+    border: 1px solid var(--workout-orange);
+    border-radius: 10px;
+    background: #fc4c021a;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    transition: 0.2s ease;
+  }
+  .workout-back svg,
+  .workout-expand svg {
+    color: var(--workout-orange);
+    font-size: 18px;
+  }
+  .workout-back:hover,
+  .workout-expand:hover {
+    background: var(--workout-orange);
+    border-color: var(--workout-orange);
+  }
+  .workout-back:hover svg,
+  .workout-expand:hover svg {
+    color: #fff;
+  }
+
+  .workout-fullscreen {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100dvh;
+    z-index: 1000000;
+    background: #000;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .workout-fullscreen-content {
+    text-align: center;
+    width: 100%;
+    color: #fff;
+  }
+  .workout-main-icon {
+    font-size: 42px;
+    color: var(--workout-orange);
+  }
+  .workout-eyebrow {
+    margin: 15px 0;
+    font-size: 19px;
+    color: #ddd;
+  }
+  .workout-fullscreen h1 {
+    font-size: clamp(42px, 11vw, 80px);
+    font-variant-numeric: tabular-nums;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.2;
+  }
+  .workout-live-kcal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 9px;
+    color: #fff;
+    font-size: 28px;
+    margin-top: 18px;
+  }
+  .workout-live-kcal svg {
+    color: var(--workout-orange);
+  }
+  .workout-live-kcal small {
+    font-size: 13px;
+    color: #bbb;
+  }
+  .workout-status {
+    color: #aaa;
+    margin-top: 12px;
+  }
+  .workout-minimize {
+    margin-top: 30px;
+    padding: 8px;
+    border: 0;
+    background: transparent;
+    color: #fff;
+    font-size: 32px;
+    cursor: pointer;
+  }
+
+  .workout-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2000000;
+    background: #000c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+  }
+  .workout-modal {
+    width: min(100%, 540px);
+    max-height: 95dvh;
+    overflow-y: auto;
+    padding: 24px;
+    border-radius: 14px;
+    background: #202020;
+    border: 1px solid #ffffff24;
+    color: #fff;
+    text-align: center;
+    box-shadow: 0 20px 65px #0009;
+  }
+  .workout-modal h2 {
+    margin: 0 0 20px;
+    font-size: 24px;
+    color: #fff;
+  }
+  .workout-save-summary {
+    text-align: left;
+    margin-bottom: 20px;
+    color: #eee;
+  }
+  .workout-save-summary p {
+    margin: 8px 0;
+  }
+  .workout-modal input,
+  .workout-modal textarea {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    background: #111;
+    border: 1px solid #555;
+    color: #fff;
+    border-radius: 8px;
+    outline: none;
+  }
+  .workout-modal input::placeholder,
+  .workout-modal textarea::placeholder {
+    color: #aaa;
+  }
+  .workout-modal input:focus,
+  .workout-modal textarea:focus {
+    border-color: var(--workout-orange);
+  }
+  .workout-modal-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
+  }
+  .workout-modal-actions button {
+    border: 1px solid #666;
+    padding: 12px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    background: #444;
+    color: #fff;
+    font-weight: 600;
+  }
+  .workout-modal-actions button:last-child {
+    background: var(--workout-orange);
+    border-color: var(--workout-orange);
+  }
+  .workout-modal-actions button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  /* Automatically generated statistics image + user photos */
+  .workout-share-card {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto 12px;
+    padding: 25px;
+    // border-radius: 16px;
+    background: #101010;
+    color: #fff;
+    // border: 1px solid #333;
+    text-align: left;
+    font-family: Arial, sans-serif;
+  }
+  .workout-share-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 19px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: #fff;
+  }
+  .workout-share-brand svg {
+    color: #fc4c02;
+  }
+  .workout-share-brand span {
+    margin-left: auto;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: #fc4c02;
+  }
+  .workout-share-type {
+    // margin-top: 30px;
+    color: #fc4c02;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .workout-share-duration {
+    margin: 6px 0 25px;
+    color: #fff;
+    font-size: clamp(38px, 8vw, 58px);
+    line-height: 1.2;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+  }
+  .workout-share-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+  }
+  .workout-share-grid > div {
+    padding: 13px 10px;
+    border-radius: 9px;
+    background: #222;
+    min-width: 0;
+  }
+  .workout-share-grid small {
+    display: block;
+    margin-bottom: 7px;
+    color: #bbb;
+    font-size: 9px;
+    letter-spacing: 0.6px;
+  }
+  .workout-share-grid strong {
+    color: #fff;
+    font-size: 19px;
+    overflow-wrap: anywhere;
+  }
+  .workout-share-grid em {
+    font-size: 11px;
+    font-weight: 400;
+    color: #bbb;
+    font-style: normal;
+  }
+  .workout-share-footer {
+    margin-top: 20px;
+    padding-top: 12px;
+    border-top: 1px solid #333;
+    color: #aaa;
+    font-size: 9px;
+    letter-spacing: 1px;
+  }
+  .workout-photo-note {
+    color: #aaa;
+    font-size: 12px;
+    line-height: 1.5;
+    margin-bottom: 14px;
+  }
+  .workout-photo-picker {
+    margin: 14px 0 18px;
+  }
+  .workout-photo-add {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    border: 1px solid #fc4c02;
+    background: #fc4c021c;
+    color: #fff;
+    padding: 11px 15px;
+    border-radius: 9px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .workout-photo-add:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+  .workout-photo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 14px;
+  }
+  .workout-photo-thumb {
+    position: relative;
+    aspect-ratio: 1;
+    border-radius: 9px;
+    overflow: hidden;
+    background: #333;
+  }
+  .workout-photo-thumb img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .workout-photo-thumb button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 29px;
+    height: 29px;
+    border: 0;
+    border-radius: 50%;
+    background: #000c;
+    color: #fff;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+  }
+
+  @media (max-width: 550px) {
+    .workout-page {
+      padding: 18px 8px 55px;
+      border-radius: 0;
+    }
+    .workout-container {
+      padding: 12px;
+    }
+    .workout-settings {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .workout-stats {
+      gap: 9px;
+    }
+    .workout-stat {
+      padding: 18px 8px;
+    }
+    .workout-controls {
+      gap: 22px;
+    }
+    .workout-timer {
+      gap: 9px;
+    }
+    .workout-timer svg {
+      font-size: 18px;
+    }
+    .workout-modal {
+      padding: 20px 15px;
+    }
+  }
+}
+
+/* Optional stats-image toggle — StepCounter-style switch */
+.workout-tracker {
+  .workout-save-image-toggle {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 16px 0 8px;
+    text-align: left;
+  }
+  .workout-switch {
+    position: relative;
+    display: inline-block;
+    width: 46px;
+    height: 26px;
+    flex: 0 0 46px;
+    cursor: pointer;
+  }
+  .workout-switch input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  .workout-switch-slider {
+    position: absolute;
+    inset: 0;
+    border-radius: 999px;
+    background: #555;
+    transition: background 0.2s ease;
+  }
+  .workout-switch-slider::before {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    left: 3px;
+    top: 3px;
+    border-radius: 50%;
+    background: #fff;
+    transition: transform 0.2s ease;
+  }
+  .workout-switch input:checked + .workout-switch-slider {
+    background: var(--workout-orange);
+  }
+  .workout-switch input:checked + .workout-switch-slider::before {
+    transform: translateX(20px);
+  }
+  .workout-switch input:focus-visible + .workout-switch-slider {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+  }
+  .workout-switch input:disabled + .workout-switch-slider {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  .workout-switch-label {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .workout-save-fields {
+    text-align: left;
+  }
+  .workout-save-fields small {
+    display: block;
+    margin: -3px 0 12px;
+    color: #bbb;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+}

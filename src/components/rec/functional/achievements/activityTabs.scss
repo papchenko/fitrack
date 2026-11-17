@@ -1,0 +1,34 @@
+
+/* Activity tabs: placed above the existing achievements header. */
+.achievement-activity-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 22px;
+  flex-wrap: wrap;
+  button {
+    display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+    padding: 12px 20px; border-radius: 12px;
+    border: 1px solid #303030; background: #171717; color: #aaa;
+    font: inherit; font-size: 14px; font-weight: 700; cursor: pointer;
+    transition: background .2s, border-color .2s, color .2s;
+    &:hover { color: #fff; border-color: #777; }
+    &.active { color: #fff; background: #db3206; border-color: #db3206; }
+  }
+}
+@media (max-width: 500px) {
+  .achievement-activity-tabs { gap: 6px; }
+  .achievement-activity-tabs button { flex: 1; padding: 11px 8px; font-size: 12px; }
+}
+
+/* Extended activity selector: horizontal scroll keeps nine tabs usable on mobile. */
+.achievement-activity-tabs {
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
+  padding-bottom: 7px;
+  button { flex: 0 0 auto; white-space: nowrap; }
+}
+@media (max-width: 500px) {
+  .achievement-activity-tabs button { flex: 0 0 auto; padding: 11px 14px; }
+}

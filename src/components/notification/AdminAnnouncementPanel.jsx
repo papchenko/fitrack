@@ -28,9 +28,9 @@ export default function AdminAnnouncementPanel() {
     setLoading(true);
     try {
       const notifRef = await addDoc(collection(db, "announcements"), {
-        title,
-        message,
-        timestamp: serverTimestamp(),
+          title: title.trim(),
+          message: message.trim(),
+          timestamp: serverTimestamp(),
       });
 
 
@@ -57,23 +57,60 @@ export default function AdminAnnouncementPanel() {
     }
   };
 
-  return (
-    <div className="admin-announcement-panel">
-      <h4>Create Notification</h4>
-      <input
-        type="text"
-        placeholder="Title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
-      <textarea
-        placeholder="Notification text..."
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-      />
-      <button onClick={sendAnnouncement} disabled={loading}>
-        {loading ? "Sending..." : "Send"}
-      </button>
-    </div>
-  );
+
+return (
+    <section className="admin-announcement-panel">
+        <div className="admin-announcement-panel__header">
+            <span className="admin-announcement-panel__eyebrow">
+                PLATFORM COMMUNICATIONS
+            </span>
+
+            <h2>Create announcement</h2>
+
+            <p>
+                Send an important update to all existing FiTrack users.
+            </p>
+        </div>
+
+        <div className="admin-announcement-panel__form">
+            <label htmlFor="announcement-title">
+                Notification title
+            </label>
+
+            <input
+                id="announcement-title"
+                type="text"
+                placeholder="What's new in FiTrack?"
+                value={title}
+                maxLength={100}
+                onChange={(event) => setTitle(event.target.value)}
+            />
+
+            <label htmlFor="announcement-message">
+                Message
+            </label>
+
+            <textarea
+                id="announcement-message"
+                placeholder="Write your announcement..."
+                value={message}
+                maxLength={2000}
+                onChange={(event) => setMessage(event.target.value)}
+            />
+
+            <div className="admin-announcement-panel__counter">
+                {message.length} / 2000
+            </div>
+
+            <button
+                type="button"
+                onClick={sendAnnouncement}
+                disabled={loading || !title.trim() || !message.trim()}
+            >
+                {loading ? "Sending announcement..." : "Send announcement"}
+            </button>
+        </div>
+    </section>
+);
+
 }

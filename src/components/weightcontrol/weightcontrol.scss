@@ -1,0 +1,703 @@
+/* =========================================================
+   RECRUN WEIGHT CONTROL
+   ========================================================= */
+
+.weight__container {
+  width: min(1080px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 120px 0 90px;
+
+  color: #f8fafc;
+
+  /* -------------------------------------------------------
+     Shared cards
+     ------------------------------------------------------- */
+
+  .card {
+    position: relative;
+    overflow: hidden;
+    align-items: center;
+
+    background:
+      linear-gradient(
+        145deg,
+        rgba(20, 26, 34, 0.98),
+        rgba(12, 17, 23, 0.98)
+      ) !important;
+
+    border: 1px solid rgba(248, 250, 252, 0.075) !important;
+    border-radius: 20px !important;
+
+    box-shadow:
+      0 18px 55px rgba(0, 0, 0, 0.28),
+      inset 0 1px 0 rgba(255, 255, 255, 0.025) !important;
+
+    transition:
+      border-color 0.25s ease,
+      box-shadow 0.25s ease,
+      transform 0.25s ease;
+
+    /* subtle top light */
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 28px;
+      right: 28px;
+      height: 1px;
+
+    //   background: linear-gradient(
+    //     90deg,
+    //     transparent,
+    //     rgba(219, 50, 6, 0.35),
+    //     transparent
+    //   );
+
+      pointer-events: none;
+    }
+  }
+
+  /* -------------------------------------------------------
+     Typography
+     ------------------------------------------------------- */
+
+  p {
+    color: rgba(248, 250, 252, 0.68);
+  }
+
+  h2 {
+    font-weight: 800;
+    letter-spacing: -0.5px;
+  }
+
+  /* -------------------------------------------------------
+     Start tracking
+     ------------------------------------------------------- */
+
+  .text-center {
+    letter-spacing: -0.3px;
+  }
+
+  /* -------------------------------------------------------
+     Inputs
+     ------------------------------------------------------- */
+
+  .form-label {
+    color: rgba(248, 250, 252, 0.55);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .form-control {
+    min-height: 50px;
+
+    background: rgba(255, 255, 255, 0.035) !important;
+    color: #f8fafc !important;
+
+    border: 1px solid rgba(248, 250, 252, 0.09) !important;
+    border-radius: 12px !important;
+
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+
+    transition:
+      border-color 0.2s ease,
+      background 0.2s ease,
+      box-shadow 0.2s ease;
+
+    &:hover {
+      border-color: rgba(219, 50, 6, 0.28) !important;
+      background: rgba(255, 255, 255, 0.045) !important;
+    }
+
+    &:focus {
+      border-color: rgba(219, 50, 6, 0.65) !important;
+
+      background: rgba(219, 50, 6, 0.035) !important;
+
+      box-shadow:
+        0 0 0 3px rgba(219, 50, 6, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.02) !important;
+
+      outline: none;
+    }
+
+    &::placeholder {
+      color: rgba(248, 250, 252, 0.3) !important;
+    }
+
+    /* remove number arrows */
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      opacity: 0.35;
+    }
+  }
+
+  /* -------------------------------------------------------
+     Recrun buttons
+     ------------------------------------------------------- */
+
+  .btn-custome {
+    min-height: 46px;
+
+    background: var(--first-color) !important;
+    border: 1px solid var(--first-color) !important;
+
+    box-shadow:
+      0 8px 24px rgba(219, 50, 6, 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 0.12);
+
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease,
+      background 0.2s ease;
+
+    &:hover:not(.disabled) {
+      background: #ef3a09 !important;
+
+      box-shadow:
+        0 12px 30px rgba(219, 50, 6, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+
+    &:active:not(.disabled) {
+      transform: translateY(1px);
+    }
+
+    &.disabled,
+    &:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+  }
+
+  /* -------------------------------------------------------
+     ProgressCard
+     ------------------------------------------------------- */
+
+  .card:has(.weight-progress-card) {
+    min-height: 150px;
+  }
+
+  /* Since ProgressCard currently has no class,
+     style its direct paragraphs through the first card */
+
+  > .mb-4:first-child {
+    .card {
+      padding: 28px !important;
+
+      p {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        min-height: 42px;
+        margin: 0;
+
+        padding: 0 0 12px;
+
+        color: rgba(248, 250, 252, 0.55);
+
+        border-bottom: 1px solid rgba(255, 255, 255, 0.055);
+
+        &:last-child {
+          padding-top: 14px;
+          padding-bottom: 0;
+          border-bottom: none;
+
+          color: #f8fafc;
+          font-weight: 700;
+        }
+      }
+
+      svg {
+        margin-right: 5px;
+        vertical-align: middle;
+        filter: drop-shadow(0 0 7px rgba(219, 50, 6, 0.35));
+      }
+    }
+  }
+
+  /* -------------------------------------------------------
+     Add today's weight
+     ------------------------------------------------------- */
+
+  .text-muted {
+    color: rgba(248, 250, 252, 0.5) !important;
+
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* -------------------------------------------------------
+     Chart
+     ------------------------------------------------------- */
+
+  .recharts-responsive-container {
+    width: 100%;
+  }
+
+  .recharts-wrapper {
+    overflow: visible;
+  }
+
+  .recharts-cartesian-grid-horizontal line,
+  .recharts-cartesian-grid-vertical line {
+    stroke: rgba(255, 255, 255, 0.055);
+  }
+
+  .recharts-cartesian-axis-line {
+    stroke: rgba(255, 255, 255, 0.08);
+  }
+
+  .recharts-cartesian-axis-tick-line {
+    stroke: rgba(255, 255, 255, 0.06);
+  }
+
+  .recharts-text {
+    fill: rgba(248, 250, 252, 0.42);
+    font-size: 11px;
+  }
+
+  .recharts-tooltip-wrapper {
+    outline: none;
+  }
+
+  .recharts-default-tooltip {
+    background: #151b23 !important;
+
+    border: 1px solid rgba(219, 50, 6, 0.28) !important;
+    border-radius: 12px !important;
+
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+
+    .recharts-tooltip-label {
+      color: rgba(248, 250, 252, 0.6) !important;
+    }
+
+    .recharts-tooltip-item {
+      color: #f8fafc !important;
+    }
+  }
+
+  .recharts-dot {
+    fill: #db3206;
+    stroke: #0d1218;
+    stroke-width: 2px;
+  }
+
+  /* -------------------------------------------------------
+     Weekly stats
+     ------------------------------------------------------- */
+
+  .card:has(.recharts-responsive-container) {
+    padding: 0 !important;
+  }
+
+  .card:has(.recharts-responsive-container) {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+
+    &::before {
+      display: none;
+    }
+  }
+
+  /* WeeklyStats is currently a plain div.
+     Make every Week item look like a dashboard row. */
+
+  .card:last-of-type {
+    div {
+      color: rgba(248, 250, 252, 0.68);
+    }
+  }
+
+  /* -------------------------------------------------------
+     AI Assistant
+     ------------------------------------------------------- */
+
+  .h5 {
+    color: #f8fafc;
+
+    font-size: 0.95rem;
+    font-weight: 800;
+    letter-spacing: -0.1px;
+
+    span {
+      width: 8px;
+      height: 8px;
+
+      display: inline-block;
+
+      background: var(--first-color);
+      border-radius: 50%;
+
+      box-shadow:
+        0 0 0 4px rgba(219, 50, 6, 0.1),
+        0 0 16px rgba(219, 50, 6, 0.45);
+    }
+  }
+
+  .text-uppercase {
+    line-height: 1.55;
+    letter-spacing: 0.035em;
+  }
+
+  .text-secondary {
+    color: rgba(248, 250, 252, 0.52) !important;
+
+    span {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+
+      padding: 8px 11px;
+
+      background: rgba(255, 255, 255, 0.035);
+      border: 1px solid rgba(255, 255, 255, 0.055);
+      border-radius: 9px;
+
+      transition:
+        border-color 0.2s ease,
+        background 0.2s ease;
+
+      &:hover {
+        background: rgba(219, 50, 6, 0.055);
+        border-color: rgba(219, 50, 6, 0.2);
+      }
+
+      svg {
+        flex-shrink: 0;
+        filter: drop-shadow(0 0 5px rgba(219, 50, 6, 0.3));
+      }
+    }
+  }
+}
+
+
+/* =========================================================
+   BMI CALCULATOR
+   ========================================================= */
+
+.calculator-bmi-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  padding: 28px !important;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(20, 26, 34, 0.98),
+      rgba(12, 17, 23, 0.98)
+    );
+
+  border: 1px solid rgba(248, 250, 252, 0.075);
+  border-radius: 20px;
+
+  box-shadow:
+    0 18px 55px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.025);
+
+  /* -------------------------------------------------------
+     Title
+     ------------------------------------------------------- */
+
+  .calculate-title {
+    position: relative;
+
+    margin-bottom: 8px;
+
+    color: #f8fafc;
+
+    font-size: clamp(1.15rem, 2vw, 1.4rem);
+    font-weight: 800;
+    letter-spacing: -0.4px;
+
+    &::before {
+      content: "";
+
+      display: inline-block;
+
+      width: 7px;
+      height: 7px;
+
+      margin-right: 10px;
+      margin-bottom: 2px;
+
+      background: var(--first-color);
+      border-radius: 50%;
+
+      box-shadow: 0 0 12px rgba(219, 50, 6, 0.55);
+    }
+  }
+
+  .calculate-description {
+    max-width: 720px;
+
+    margin-bottom: 24px;
+
+    color: rgba(248, 250, 252, 0.48);
+
+    font-size: 0.86rem;
+    line-height: 1.65;
+  }
+
+  /* -------------------------------------------------------
+     Input
+     ------------------------------------------------------- */
+
+  .calculate-info {
+    margin-top: 5px;
+  }
+
+  .calculate-input {
+    min-height: 50px;
+
+    background: rgba(255, 255, 255, 0.035) !important;
+
+    color: #f8fafc !important;
+
+    border: 1px solid rgba(248, 250, 252, 0.09) !important;
+    border-radius: 11px !important;
+
+    box-shadow: none !important;
+
+    transition:
+      border-color 0.2s ease,
+      background 0.2s ease,
+      box-shadow 0.2s ease;
+
+    &::placeholder {
+      color: rgba(248, 250, 252, 0.3) !important;
+    }
+
+    &:hover {
+      border-color: rgba(219, 50, 6, 0.3) !important;
+    }
+
+    &:focus {
+      background: rgba(219, 50, 6, 0.035) !important;
+
+      border-color: rgba(219, 50, 6, 0.65) !important;
+
+      box-shadow:
+        0 0 0 3px rgba(219, 50, 6, 0.1) !important;
+
+      outline: none;
+    }
+  }
+
+  /* -------------------------------------------------------
+     Calculate button
+     ------------------------------------------------------- */
+
+  .calculate-btn {
+    min-height: 50px;
+
+    background: var(--first-color) !important;
+    border: 1px solid var(--first-color) !important;
+    border-radius: 11px !important;
+
+    box-shadow:
+      0 8px 24px rgba(219, 50, 6, 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 0.12);
+
+    transition:
+      transform 0.2s ease,
+      background 0.2s ease,
+      box-shadow 0.2s ease;
+
+    &:hover {
+      background: #ef3a09 !important;
+
+      transform: translateY(-1px);
+
+      box-shadow:
+        0 12px 28px rgba(219, 50, 6, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.14);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  /* -------------------------------------------------------
+     BMI result
+     ------------------------------------------------------- */
+
+  .calculate-message {
+    margin: 22px 0 0;
+
+    padding: 13px 15px;
+
+    background: rgba(255, 255, 255, 0.035);
+
+    border: 1px solid rgba(255, 255, 255, 0.065);
+    border-radius: 10px;
+
+    font-size: 0.9rem;
+    font-weight: 700;
+    line-height: 1.5;
+  }
+
+  .text-danger,
+  .text-primary,
+  .text-success,
+  .text-warning {
+    color: #f8fafc !important;
+  }
+}
+
+
+/* =========================================================
+   GLOBAL DARK BACKGROUND FOR WEIGHT PAGE
+   ========================================================= */
+
+.weight__container {
+  position: relative;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 991px) {
+
+  .weight__container {
+    width: min(760px, calc(100% - 28px));
+    padding-top: 105px;
+
+    .calculator-bmi-wrapper {
+      .calculate-info {
+        margin-top: 8px;
+      }
+
+      .calculate-btn {
+        width: 100%;
+      }
+    }
+  }
+}
+
+
+@media (max-width: 767px) {
+
+  .weight__container {
+    width: calc(100% - 22px);
+    padding: 95px 0 55px;
+
+    .card {
+      border-radius: 17px !important;
+    }
+
+    .card.p-4 {
+      padding: 20px !important;
+    }
+
+    > .mb-4:first-child {
+      .card {
+        padding: 21px !important;
+
+        p {
+          min-height: 40px;
+          font-size: 0.9rem;
+        }
+      }
+    }
+
+    .form-control {
+      min-height: 48px;
+    }
+
+    .btn-custome {
+      width: 100%;
+    }
+
+    /* Chart */
+
+    .recharts-responsive-container {
+      height: 230px !important;
+    }
+
+    /* AI */
+
+    .text-secondary {
+      gap: 8px !important;
+
+      span {
+        flex: 1 1 calc(50% - 8px);
+        justify-content: flex-start;
+
+        min-width: 140px;
+      }
+    }
+  }
+
+
+  .calculator-bmi-wrapper {
+    padding: 21px !important;
+    border-radius: 17px;
+
+    .calculate-title {
+      font-size: 1.15rem;
+    }
+
+    .calculate-description {
+      font-size: 0.82rem;
+      margin-bottom: 18px;
+    }
+
+    .calculate-info {
+      width: 100%;
+      margin-top: 8px;
+    }
+
+    .calculate-input {
+      width: 100%;
+    }
+
+    .calculate-btn {
+      width: 100%;
+      margin-top: 5px;
+    }
+
+    .calculate-message {
+      font-size: 0.85rem;
+    }
+  }
+}
+
+
+@media (max-width: 480px) {
+
+  .weight__container {
+    width: calc(100% - 16px);
+    padding-top: 88px;
+
+    .text-secondary {
+      flex-direction: column !important;
+
+      span {
+        width: 100%;
+        flex: none;
+      }
+    }
+  }
+
+  .calculator-bmi-wrapper {
+    padding: 18px !important;
+  }
+  .card {
+    // margin-bottom: 30px !important;
+  }
+}

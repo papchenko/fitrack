@@ -1,0 +1,15 @@
+.club-page {
+  width: 100%;
+  min-height: 100vh;
+
+  padding-top: 200px;
+  padding-bottom: 80px;
+
+  background: var(--bg-base);
+}
+@media (max-width: 768px) {
+  .club-page {
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+}

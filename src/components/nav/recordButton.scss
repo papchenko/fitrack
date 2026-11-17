@@ -1,0 +1,112 @@
+/* FiTrack record mark — namespaced to avoid existing navbar icon rules. */
+a.ft-record-cta {
+    box-sizing: border-box;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex: 0 0 auto;
+    width: 174px;
+    min-width: 174px;
+    max-width: 174px;
+    height: 48px;
+    min-height: 48px;
+    padding: 5px 11px 5px 7px;
+    gap: 10px;
+    overflow: hidden;
+    // border: 1px solid rgba(255, 100, 51, .38);
+    border-radius: 14px;
+    // background: linear-gradient(115deg, #242126 0%, #171a21 72%);
+    // box-shadow: inset 0 1px 0 rgba(255,255,255,.085), 0 4px 14px rgba(0,0,0,.22);
+    color: #f8fafc;
+    text-decoration: none;
+    white-space: nowrap;
+    line-height: 1;
+    isolation: isolate;
+    transform: none;
+    animation: none;
+    // transition: border-color .22s ease, background .22s ease, box-shadow .22s ease, transform .22s ease;
+    // -webkit-tap-highlight-color: transparent;
+}
+a.ft-record-cta::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 57px;
+    // background: radial-gradient(circle at 42% 50%, rgba(255,77,24,.17), transparent 74%);
+    pointer-events: none;
+}
+a.ft-record-cta:hover {
+    color: #fff;
+    border-color: rgba(255, 111, 65, .76);
+    // background: linear-gradient(115deg, #302228 0%, #1b1d25 72%);
+    // box-shadow: inset 0 1px 0 rgba(255,255,255,.12), 0 6px 22px rgba(255,67,15,.14);
+    transform: translateY(-1px);
+}
+a.ft-record-cta:active { transform: scale(.975); }
+a.ft-record-cta:focus-visible { outline: 2px solid #ff7745; outline-offset: 3px; }
+.ft-record-cta__symbol {
+    box-sizing: border-box;
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 35px;
+    height: 35px;
+    min-width: 35px;
+    min-height: 35px;
+    flex: 0 0 35px;
+    border: 6px solid #fa4b12;
+    border-radius: 50%;
+    background: #17181d;
+    // box-shadow: inset 0 2px 4px rgba(0,0,0,.6), 0 2px 0 #7c1a08, 0 0 12px rgba(255,65,13,.15);
+    // transition: border-color .2s ease, box-shadow .2s ease;
+}
+.ft-record-cta__disc {
+    display: block;
+    width: 13px;
+    height: 13px;
+    flex: 0 0 13px;
+    border-radius: 50%;
+    background: linear-gradient(140deg, #ff763e 0%, #ff4a0c 58%, #d62d05 100%);
+    box-shadow: inset 0 1px 1px rgba(255,255,255,.3), 0 2px 3px rgba(0,0,0,.4);
+}
+.ft-record-cta__copy { display: flex; flex-direction: column; gap: 5px; min-width: 0; flex: 1 1 auto; }
+.ft-record-cta__title { color: #fff; font-size: 12px; font-weight: 800; letter-spacing: .105em; }
+.ft-record-cta__subtitle { color: #9295a1; font-size: 8px; font-weight: 650; letter-spacing: .105em; }
+.ft-record-cta__chevron { color: #a7a5a8; font-size: 16px; line-height: 1; flex: 0 0 auto; transition: color .2s ease, transform .2s ease; }
+a.ft-record-cta:hover .ft-record-cta__chevron { color: #ff7848; transform: translate(1px,-1px); }
+a.ft-record-cta:hover .ft-record-cta__symbol { box-shadow: inset 0 2px 4px rgba(0,0,0,.6), 0 2px 0 #7c1a08, 0 0 18px rgba(255,65,13,.35); }
+/* Mobile: the same branded mark in a compact 44px control. */
+a.ft-record-cta.ft-record-cta--compact {
+    width: 44px;
+    min-width: 44px;
+    max-width: 44px;
+    height: 44px;
+    min-height: 44px;
+    padding: 0;
+    justify-content: center;
+    gap: 0;
+    border-radius: 13px;
+}
+a.ft-record-cta.ft-record-cta--compact::before { width: 100%; }
+a.ft-record-cta.ft-record-cta--compact .ft-record-cta__symbol {
+    width: 31px;
+    height: 31px;
+    min-width: 31px;
+    min-height: 31px;
+    flex-basis: 31px;
+    border-width: 5px;
+}
+a.ft-record-cta.ft-record-cta--compact .ft-record-cta__disc { width: 12px; height: 12px; flex-basis: 12px; }
+@media (max-width: 380px) {
+    a.ft-record-cta.ft-record-cta--compact { width: 40px; min-width: 40px; max-width: 40px; height: 40px; min-height: 40px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    a.ft-record-cta, .ft-record-cta__symbol, .ft-record-cta__chevron { transition: none; }
+}
+
+/* Identical compact brand mark at every viewport size. */
+a.ft-record-cta, a.ft-record-cta.ft-record-cta--compact { width: 44px; min-width: 44px; max-width: 44px; height: 44px; min-height: 44px; padding: 0; justify-content: center; gap: 0; border-radius: 13px; }
+a.ft-record-cta .ft-record-cta__symbol { width: 31px; min-width: 31px; height: 31px; min-height: 31px; flex-basis: 31px; border-width: 5px; }
+a.ft-record-cta .ft-record-cta__disc { width: 12px; height: 12px; }
+@media (max-width: 380px) { a.ft-record-cta, a.ft-record-cta.ft-record-cta--compact { width: 44px; min-width: 44px; max-width: 44px; height: 44px; min-height: 44px; } }

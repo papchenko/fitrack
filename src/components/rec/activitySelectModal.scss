@@ -1,0 +1,134 @@
+.activity-select-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(10px);
+}
+
+.activity-select-modal {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 520px;
+  max-height: min(760px, calc(100dvh - 40px));
+  min-height: 0;
+  overflow: hidden;
+  padding: 28px;
+  background: #17191d;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+  animation: activityModalIn 0.25s ease;
+}
+
+.activity-select-header {
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 15px;
+  margin-bottom: 22px;
+
+  h2 { margin: 0 0 7px; color: #fff; font-size: 1.4rem; font-weight: 750; }
+  p { margin: 0; color: #9298a1; font-size: 0.8rem; }
+}
+
+.activity-select-close {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.05);
+  color: #a9adb5;
+  border: 0;
+  border-radius: 9px;
+  cursor: pointer;
+  &:hover { background: rgba(255, 255, 255, 0.1); color: #fff; }
+}
+
+.activity-select-groups {
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #555 #17191d;
+  padding: 3px 5px 8px 3px;
+}
+
+.activity-select-group + .activity-select-group {
+  margin-top: 25px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255, 255, 255, 0.075);
+}
+
+.activity-select-group-heading {
+  margin-bottom: 13px;
+  h3 { margin: 0 0 5px; color: #fff; font-size: 0.91rem; font-weight: 750; }
+  p { margin: 0; color: #9298a1; font-size: 0.72rem; }
+}
+
+.activity-select-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.activity-select-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+  min-height: 145px;
+  padding: 17px 12px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  &:hover, &:focus-visible {
+    background: rgba(219, 50, 6, 0.08);
+    border-color: #db3206;
+    transform: translateY(-3px);
+  }
+  strong { font-size: 0.95rem; font-weight: 700; }
+  small { color: #9298a1; font-size: 0.7rem; text-align: center; }
+}
+
+.activity-select-icon {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 15px;
+  background: rgba(219, 50, 6, 0.1);
+  color: #db3206;
+  svg { font-size: 1.8rem; }
+}
+
+.activity-select-footer {
+  flex: 0 0 auto;
+  margin: 18px 0 0;
+  color: #777e89;
+  text-align: center;
+  font-size: 0.72rem;
+}
+
+@keyframes activityModalIn {
+  from { opacity: 0; transform: translateY(12px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (max-width: 480px) {
+  .activity-select-modal { padding: 22px 18px; }
+  .activity-select-options { gap: 10px; }
+  .activity-select-option { min-height: 136px; padding: 14px 8px; }
+}

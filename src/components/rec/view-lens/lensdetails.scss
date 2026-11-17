@@ -1,0 +1,528 @@
+
+/* =========================================================
+   RECRUN — LENS DETAILS
+   RUNNING / CYCLING / WORKOUT
+========================================================= */
+
+.lensdetails-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  padding: 180px 20px 80px;
+  margin: 0 auto;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+
+  box-sizing: border-box;
+
+  background: var(--section-bg, #11151b);
+  color: var(--white-color, #f8fafc);
+
+  /* ==========================================
+     MAIN CARD
+  ========================================== */
+
+  .lensdetails-card {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    max-width: 780px;
+    min-width: 0;
+    margin: 0 auto;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(248, 250, 252, 0.08);
+    border-radius: 20px;
+
+    background: linear-gradient(
+      145deg,
+      rgba(30, 36, 45, 0.97),
+      rgba(17, 22, 29, 0.99)
+    );
+
+    box-shadow:
+      0 18px 55px rgba(0, 0, 0, 0.22),
+      inset 0 1px 0 rgba(255, 255, 255, 0.025);
+  }
+
+  /* ==========================================
+     HEADER
+  ========================================== */
+
+  .lensdetails-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 14px;
+    min-width: 0;
+    padding: 20px 24px;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(255, 255, 255, 0.018);
+  }
+
+  .lensdetails-user {
+    display: flex;
+    align-items: center;
+    flex: 1;
+
+    gap: 12px;
+    min-width: 0;
+  }
+
+  .lensdetails-avatar-wrapper {
+    width: 46px;
+    height: 46px;
+    flex-shrink: 0;
+  }
+
+  .lensdetails-avatar,
+  .lensdetails-avatar-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.07);
+    color: var(--white-color, #f8fafc);
+  }
+
+  .lensdetails-avatar {
+    object-fit: cover;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .lensdetails-avatar-placeholder {
+    font-size: 1.05rem;
+    font-weight: 750;
+    text-transform: uppercase;
+  }
+
+  .lensdetails-user-info {
+    display: flex;
+    flex-direction: column;
+
+    gap: 5px;
+    min-width: 0;
+
+    strong {
+      color: var(--white-color, #f8fafc);
+      font-size: 0.9rem;
+      font-weight: 750;
+
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    span {
+      color: var(--primary-pera, #a1a1aa);
+      font-size: 0.73rem;
+      line-height: 1.35;
+    }
+  }
+
+  /* ==========================================
+     ACTIVITY TYPE
+  ========================================== */
+
+  .lensdetails-type {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+    flex-shrink: 0;
+
+    padding: 8px 12px;
+
+    border: 1px solid rgba(219, 50, 6, 0.2);
+    border-radius: 999px;
+
+    background: rgba(219, 50, 6, 0.07);
+    color: #ff6438;
+
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.045em;
+    text-transform: uppercase;
+
+    svg {
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+  }
+
+  /* ==========================================
+     TITLE / NOTES
+  ========================================== */
+
+  .lensdetails-content {
+    padding: 22px 24px 20px;
+    min-width: 0;
+  }
+
+  .lensdetails-title {
+    margin: 0;
+    padding: 0;
+
+    color: var(--white-color, #f8fafc);
+    font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+    font-weight: 800;
+    line-height: 1.3;
+    letter-spacing: -0.025em;
+
+    overflow-wrap: anywhere;
+  }
+
+  .lensdetails-notes {
+    margin: 12px 0 0;
+
+    color: var(--primary-pera, #a1a1aa);
+    font-size: 0.88rem;
+    font-weight: 400;
+    line-height: 1.7;
+
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+
+  /* ==========================================
+     SWIPER / IMAGES
+  ========================================== */
+
+  .lensdetails-swiper {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    overflow: hidden;
+
+    background: rgba(0, 0, 0, 0.22);
+
+    .swiper-wrapper {
+      align-items: stretch;
+    }
+
+    .swiper-slide {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 100%;
+      height: auto;
+      min-width: 0;
+    }
+
+    .swiper-pagination {
+      bottom: 12px;
+    }
+
+    .swiper-pagination-bullet {
+      width: 7px;
+      height: 7px;
+
+      background: rgba(255, 255, 255, 0.65);
+      opacity: 0.6;
+    }
+
+    .swiper-pagination-bullet-active {
+      background: var(--first-color, #db3206);
+      opacity: 1;
+    }
+
+    &.single-image .swiper-pagination {
+      display: none !important;
+    }
+  }
+
+  .lensdetails-img {
+    display: block;
+
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: 520px;
+
+    object-fit: contain;
+
+    margin: 0 auto;
+  }
+
+  /* ==========================================
+     STATS GRID
+  ========================================== */
+
+  .lensdetails-info {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 12px;
+    padding: 24px;
+
+    min-width: 0;
+  }
+
+  .lensdetails-stat {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+
+    gap: 6px 8px;
+
+    min-width: 0;
+    margin: 0;
+    padding: 15px 16px;
+
+    border: 1px solid rgba(248, 250, 252, 0.055);
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.025);
+
+    color: var(--primary-pera, #a1a1aa);
+    font-size: 0.82rem;
+    line-height: 1.5;
+
+    overflow: hidden;
+  }
+
+  .lensdetails-stat .lens-icon {
+    width: 19px;
+    height: 19px;
+
+    flex-shrink: 0;
+    margin-top: 1px;
+
+    color: var(--first-color, #db3206);
+  }
+
+  .lensdetails-stat strong {
+    color: rgba(248, 250, 252, 0.75);
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+
+  .lensdetails-stat-value {
+    display: block;
+    flex-basis: 100%;
+
+    min-width: 0;
+    padding-left: 27px;
+
+    color: var(--white-color, #f8fafc);
+    font-size: 1rem;
+    font-weight: 750;
+    line-height: 1.4;
+
+    overflow-wrap: anywhere;
+  }
+
+  /* ==========================================
+     ACHIEVEMENTS
+  ========================================== */
+
+  .lensdetails-achievements {
+    min-width: 0;
+    padding: 16px 24px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.055);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.055);
+
+    background: rgba(255, 255, 255, 0.012);
+  }
+
+  /* ==========================================
+     INTERACTIONS
+  ========================================== */
+
+  .lensdetails-interactions {
+    width: 100%;
+    min-width: 0;
+
+    margin-top: auto;
+    padding: 16px 24px 20px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.055);
+    background: rgba(0, 0, 0, 0.035);
+  }
+
+  /* ==========================================
+     TABLET
+  ========================================== */
+
+  @media (max-width: 950px) {
+    padding: 115px 18px 65px;
+
+    .lensdetails-card {
+      max-width: 720px;
+    }
+
+    .lensdetails-header {
+      padding: 17px 20px;
+    }
+
+    .lensdetails-content {
+      padding: 20px;
+    }
+
+    .lensdetails-info {
+      padding: 20px;
+    }
+
+    .lensdetails-achievements {
+      padding: 15px 20px;
+    }
+
+    .lensdetails-interactions {
+      padding: 15px 20px;
+    }
+  }
+
+  /* ==========================================
+     MOBILE
+  ========================================== */
+
+  @media (max-width: 650px) {
+    padding: 100px 12px 45px;
+
+    .lensdetails-card {
+      max-width: 100%;
+      border-radius: 15px;
+    }
+
+    .lensdetails-header {
+      gap: 10px;
+      padding: 14px;
+    }
+
+    .lensdetails-user {
+      gap: 9px;
+    }
+
+    .lensdetails-avatar-wrapper {
+      width: 38px;
+      height: 38px;
+    }
+
+    .lensdetails-user-info strong {
+      font-size: 0.79rem;
+    }
+
+    .lensdetails-user-info span {
+      font-size: 0.65rem;
+    }
+
+    .lensdetails-type {
+      gap: 5px;
+      padding: 6px 9px;
+      font-size: 0.61rem;
+
+      svg {
+        font-size: 0.83rem;
+      }
+    }
+
+    .lensdetails-content {
+      padding: 17px 14px;
+    }
+
+    .lensdetails-title {
+      font-size: 1.3rem;
+    }
+
+    .lensdetails-notes {
+      font-size: 0.8rem;
+      line-height: 1.6;
+    }
+
+    .lensdetails-img {
+      max-height: 380px;
+    }
+
+    .lensdetails-info {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 9px;
+      padding: 14px;
+    }
+
+    .lensdetails-stat {
+      padding: 12px 10px;
+      gap: 5px;
+    }
+
+    .lensdetails-stat .lens-icon {
+      width: 16px;
+      height: 16px;
+    }
+
+    .lensdetails-stat strong {
+      font-size: 0.69rem;
+    }
+
+    .lensdetails-stat-value {
+      padding-left: 0;
+      font-size: 0.85rem;
+    }
+
+    .lensdetails-achievements {
+      padding: 12px 14px;
+    }
+
+    .lensdetails-interactions {
+      padding: 13px 14px;
+    }
+  }
+
+  /* ==========================================
+     SMALL MOBILE
+  ========================================== */
+
+  @media (max-width: 380px) {
+    padding-inline: 8px;
+
+    .lensdetails-header {
+      padding: 12px;
+    }
+
+    .lensdetails-content {
+      padding: 15px 12px;
+    }
+
+    .lensdetails-type {
+      padding: 6px 7px;
+      font-size: 0.57rem;
+    }
+
+    .lensdetails-info {
+      gap: 7px;
+      padding: 10px;
+    }
+
+    .lensdetails-stat {
+      padding: 10px 8px;
+    }
+
+    .lensdetails-stat-value {
+      font-size: 0.78rem;
+    }
+  }
+}
+
+/* ==========================================
+   REDUCED MOTION
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .lensdetails-wrapper,
+  .lensdetails-card,
+  .lensdetails-img {
+    transition: none !important;
+  }
+}

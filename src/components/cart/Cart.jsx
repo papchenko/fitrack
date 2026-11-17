@@ -23,11 +23,7 @@ const Cart = () => {
 
   const handleNext = () => {
     if (!user) {
-      toast.info("Please sign in to continue your order", {
-        position: "top-center",
-        autoClose: 2500,
-        theme: "dark",
-      });
+      toast.info("Please sign in to continue your order.");
       return;
     }
     setShowCheckout(true);
@@ -37,7 +33,7 @@ const Cart = () => {
 
   return (
     <section className="main-wrapper text-white">
-      <div className="cartpage-wrapper">
+      <div className="cartpage-wrappers">
         <div className="container cartpage-container">
           <div className="row cartpage-content">
             {/* --- CART ITEMS --- */}

@@ -1,0 +1,539 @@
+
+// .fitrack-replay-overlay {
+//     position: fixed;
+//     inset: 0;
+//     z-index: 99999;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     padding: 16px;
+//     background: rgba(0, 0, 0, 0.88);
+// }
+
+// .fitrack-replay-dialog {
+//     display: flex;
+//     flex-direction: column;
+//     width: min(1100px, 100%);
+//     height: min(850px, 94dvh);
+//     overflow: hidden;
+//     border: 1px solid #ffffff20;
+//     border-radius: 18px;
+//     background: #171b20;
+//     color: #fff;
+// }
+
+// .fitrack-replay-header {
+//     display: flex;
+//     align-items: center;
+//     justify-content: space-between;
+//     gap: 16px;
+//     padding: 18px 22px;
+
+//     small {
+//         color: #ff531c;
+//         font-size: 11px;
+//         letter-spacing: 2px;
+//     }
+
+//     h2 {
+//         margin: 5px 0 0;
+//         font-size: 20px;
+//     }
+
+//     button {
+//         border: none;
+//         background: transparent;
+//         color: #fff;
+//         font-size: 24px;
+//         cursor: pointer;
+//     }
+// }
+
+// .fitrack-replay-map {
+//     flex: 1;
+//     min-height: 0;
+//     width: 100%;
+// }
+
+// .fitrack-replay-marker {
+//     width: 20px;
+//     height: 20px;
+//     border: 4px solid white;
+//     border-radius: 50%;
+//     background: #ff531c;
+//     box-shadow: 0 0 0 8px #ff531c33;
+// }
+
+// .fitrack-replay-controls {
+//     padding: 20px;
+//     background: #171b20;
+
+//     input[type="range"] {
+//         width: 100%;
+//         accent-color: #ff531c;
+//         cursor: pointer;
+//     }
+// }
+
+// .fitrack-replay-stats,
+// .fitrack-replay-actions {
+//     display: flex;
+//     align-items: center;
+//     justify-content: space-between;
+//     gap: 12px;
+//     margin-bottom: 15px;
+// }
+
+// .fitrack-replay-stats strong {
+//     font-size: 25px;
+// }
+
+// .fitrack-replay-actions {
+//     margin: 15px 0 0;
+//     flex-wrap: wrap;
+
+//     button,
+//     select {
+//         padding: 10px 16px;
+//         border: 1px solid #ffffff30;
+//         border-radius: 9px;
+//         background: #262b32;
+//         color: #fff;
+//         cursor: pointer;
+//     }
+
+//     button:hover {
+//         background: #db3206;
+//     }
+// }
+
+// .fitrack-replay-empty {
+//     padding: 30px;
+//     text-align: center;
+// }
+
+// @media (max-width: 600px) {
+//     .fitrack-replay-overlay {
+//         padding: 0;
+//     }
+
+//     .fitrack-replay-dialog {
+//         width: 100%;
+//         height: 100dvh;
+//         border-radius: 0;
+//     }
+
+//     .fitrack-replay-header {
+//         padding: 14px;
+//     }
+
+//     .fitrack-replay-controls {
+//         padding: 14px;
+//     }
+// }
+
+
+.fitrack-replay-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2147483647;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 14px;
+
+    background: rgba(0, 0, 0, 0.94);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    isolation: isolate;
+}
+
+.fitrack-replay-dialog {
+    display: flex;
+    flex-direction: column;
+
+    width: min(900px, 100%);
+    height: min(720px, 92dvh);
+    min-height: 0;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 18px;
+
+    background: #171b20;
+    color: #fff;
+
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.65);
+}
+
+.fitrack-replay-header {
+    display: flex;
+    align-items: center;
+    // justify-content: space-between;
+    justify-content: center;
+    gap: 12px;
+
+    flex-shrink: 0;
+
+    padding: 14px 18px;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.fitrack-replay-heading {
+    min-width: 0;
+
+    h2 {
+        margin: 4px 0 0;
+
+        font-size: 17px;
+        font-weight: 700;
+        line-height: 1.3;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
+
+.fitrack-replay-eyebrow {
+    display: block;
+
+    color: #ff531c;
+
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.fitrack-replay-live-badge {
+    flex-shrink: 0;
+
+    padding: 6px 9px;
+
+    border-radius: 7px;
+    background: rgba(219, 50, 6, 0.16);
+
+    color: #ff531c;
+
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.fitrack-replay-map-wrapper {
+    position: relative;
+
+    flex: 1 1 auto;
+    min-height: 140px;
+
+    overflow: hidden;
+    background: #11151a;
+}
+
+.fitrack-replay-map {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+}
+
+.fitrack-replay-marker {
+    width: 20px;
+    height: 20px;
+
+    border: 4px solid #fff;
+    border-radius: 50%;
+
+    background: #ff531c;
+
+    box-shadow:
+        0 0 0 7px rgba(255, 83, 28, 0.2),
+        0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.fitrack-replay-controls {
+    flex: 0 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    padding: 15px 18px 16px;
+
+    background: #171b20;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.fitrack-replay-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin: 0;
+}
+
+.fitrack-replay-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    min-width: 0;
+
+    span {
+        color: #9199a4;
+        font-size: 11px;
+    }
+
+    strong {
+        color: #fff;
+        font-size: 19px;
+        font-weight: 700;
+        white-space: nowrap;
+    }
+
+    small {
+        color: #aab0b8;
+        font-size: 11px;
+        font-weight: 500;
+    }
+}
+
+.fitrack-replay-timeline {
+    display: flex;
+    align-items: center;
+    min-height: 22px;
+
+    input[type="range"] {
+        appearance: none;
+        -webkit-appearance: none;
+
+        width: 100%;
+        height: 5px;
+
+        margin: 0;
+        border: none;
+        border-radius: 10px;
+
+        background: linear-gradient(
+            to right,
+            #db3206 0%,
+            #db3206 var(--replay-progress),
+            #414751 var(--replay-progress),
+            #414751 100%
+        );
+
+        cursor: pointer;
+
+        &::-webkit-slider-thumb {
+            appearance: none;
+            -webkit-appearance: none;
+
+            width: 17px;
+            height: 17px;
+
+            border: 3px solid #fff;
+            border-radius: 50%;
+
+            background: #db3206;
+        }
+
+        &::-moz-range-thumb {
+            width: 12px;
+            height: 12px;
+
+            border: 3px solid #fff;
+            border-radius: 50%;
+
+            background: #db3206;
+        }
+    }
+}
+
+.fitrack-replay-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+
+    margin: 0;
+
+    button,
+    select {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        min-height: 39px;
+
+        padding: 9px 12px;
+
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 9px;
+
+        background: #292f37;
+        color: #fff;
+
+        font-size: 12px;
+        font-weight: 600;
+
+        cursor: pointer;
+
+        &:hover {
+            background: #353c45;
+        }
+    }
+
+    select {
+        min-width: 62px;
+        text-align: center;
+    }
+}
+
+.fitrack-replay-actions .fitrack-replay-play-btn {
+    gap: 8px;
+    min-width: 95px;
+
+    border-color: #db3206;
+    background: #db3206;
+
+    &:hover {
+        background: #f04416;
+    }
+}
+
+.fitrack-replay-actions .fitrack-replay-icon-btn {
+    width: 39px;
+    padding: 9px;
+}
+
+.fitrack-replay-back-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+
+    width: 100%;
+    min-height: 40px;
+
+    padding: 10px 14px;
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 9px;
+
+    background: #222831;
+    color: #d6dbe1;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: background 0.2s ease;
+
+    &:hover {
+        background: #343b45;
+    }
+}
+
+.fitrack-replay-empty {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+
+    padding: 24px;
+    text-align: center;
+}
+
+@media (max-width: 600px) {
+    .fitrack-replay-overlay {
+        padding:
+            max(8px, env(safe-area-inset-top))
+            8px
+            max(8px, env(safe-area-inset-bottom));
+    }
+
+    .fitrack-replay-dialog {
+        width: 100%;
+        height: 100%;
+        max-height: 100%;
+        border-radius: 14px;
+    }
+
+    .fitrack-replay-header {
+        padding: 11px 13px;
+    }
+
+    .fitrack-replay-heading h2 {
+        font-size: 15px;
+    }
+
+    .fitrack-replay-eyebrow {
+        font-size: 9px;
+        letter-spacing: 1px;
+    }
+
+    .fitrack-replay-controls {
+        gap: 10px;
+        padding: 12px;
+    }
+
+    .fitrack-replay-stat strong {
+        font-size: 16px;
+    }
+
+    .fitrack-replay-stat span {
+        font-size: 10px;
+    }
+
+    .fitrack-replay-actions {
+        gap: 6px;
+
+        button,
+        select {
+            min-height: 40px;
+            padding: 8px 10px;
+        }
+    }
+
+    .fitrack-replay-actions .fitrack-replay-play-btn {
+        min-width: 82px;
+    }
+
+    .fitrack-replay-back-btn {
+        min-height: 42px;
+    }
+}
+
+@media (max-width: 380px) {
+    .fitrack-replay-actions {
+        flex-wrap: wrap;
+    }
+
+    .fitrack-replay-actions .fitrack-replay-camera-btn {
+        flex: 1;
+    }
+}
+
+@media (max-height: 580px) {
+    .fitrack-replay-header {
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+
+    .fitrack-replay-controls {
+        gap: 7px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+
+    .fitrack-replay-map-wrapper {
+        min-height: 100px;
+    }
+}

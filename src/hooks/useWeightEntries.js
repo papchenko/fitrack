@@ -1,15 +1,25 @@
+
 import { useEffect, useState } from "react";
 import { subscribeEntries } from "../api/weight.service";
 
 export const useWeightEntries = (weekId) => {
-  const [entries, setEntries] = useState([]);
+    const [entries, setEntries] = useState([]);
 
-  useEffect(() => {
-    if (!weekId) return;
+    useEffect(() => {
+        if (!weekId) {
+            setEntries([]);
+            return;
+        }
 
-    const unsub = subscribeEntries(weekId, setEntries);
-    return () => unsub();
-  }, [weekId]);
+        setEntries([]);
 
-  return entries;
+        const unsubscribe = subscribeEntries(
+            weekId,
+            setEntries
+        );
+
+        return () => unsubscribe();
+    }, [weekId]);
+
+    return entries;
 };

@@ -1,0 +1,3093 @@
+/* =========================================================
+
+   STEPS LIST / RUN COMMUNITY FEED
+
+========================================================= */
+
+.stepslist-wrapper {
+
+  position: relative;
+
+  width: 100%;
+
+  max-width: 1440px;
+
+  margin: 0 auto;
+
+  padding: 200px 32px 70px;
+
+  color: var(--white-color);
+
+  z-index: 0;
+
+}
+
+/* =========================================================
+
+   HEADER
+
+========================================================= */
+
+.stepslist-header {
+
+  display: flex;
+
+  align-items: flex-end;
+
+  // justify-content: space-between;
+
+  justify-content: center;
+
+  gap: 30px;
+
+  margin-bottom: 36px;
+
+}
+
+.stepslist-heading {
+
+  min-width: 0;
+
+}
+
+.stepslist-eyebrow {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  margin-bottom: 9px;
+
+  color: var(--first-color);
+
+  font-size: 0.68rem;
+
+  font-weight: 800;
+
+  letter-spacing: 0.14em;
+
+  text-transform: uppercase;
+
+}
+
+.stepslist-heading h2 {
+
+  margin: 0 0 8px;
+
+  color: var(--white-color);
+
+  font-size: clamp(2rem, 3vw, 2.8rem);
+
+  font-weight: 750;
+
+  line-height: 1.1;
+
+  letter-spacing: -0.03em;
+
+}
+
+.stepslist-heading p {
+
+  max-width: 560px;
+
+  margin: 0;
+
+  color: var(--primary-pera);
+
+  font-size: 0.88rem;
+
+  line-height: 1.6;
+
+}
+
+/* =========================================================
+
+   FILTER
+
+========================================================= */
+
+.stepslist-toggle {
+
+  display: flex;
+
+  flex-shrink: 0;
+
+  width: 430px;
+
+  padding: 8px;
+
+  gap: 1rem;
+
+  margin-top: 40px;
+
+  background: rgba(255, 255, 255, 0.045);
+
+  border: 1px solid var(--border-color);
+
+  border-radius: 11px;
+
+  box-shadow:
+
+    0 8px 24px rgba(0, 0, 0, 0.12),
+
+    inset 0 1px 0 rgba(255, 255, 255, 0.025);
+
+  backdrop-filter: blur(12px);
+
+}
+
+.stepslist-toggle button {
+
+  flex: 1;
+
+  min-height: 38px;
+
+  padding: 0 12px;
+
+  border: 0;
+
+  border-radius: 8px;
+
+  background: transparent;
+
+  color: var(--primary-pera);
+
+  font-size: 0.75rem;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+
+background 0.25s ease,
+
+    color 0.25s ease,
+
+    box-shadow 0.25s ease;
+
+}
+
+.stepslist-toggle button.active {
+
+  background: var(--first-color);
+
+  color: #fff;
+
+  box-shadow: 0 5px 15px rgba(219, 50, 6, 0.2);
+
+}
+
+.stepslist-toggle button:hover:not(.active):not(:disabled) {
+
+  background: rgba(255, 255, 255, 0.045);
+
+  color: var(--white-color);
+
+}
+
+.stepslist-toggle button:disabled {
+
+  opacity: 0.35;
+
+  cursor: not-allowed;
+
+}
+
+/* =========================================================
+
+   FEED GRID
+
+   Desktop       4
+
+   Laptop        3
+
+   Tablet        2
+
+   Mobile        1
+
+========================================================= */
+
+.stepslist-feed {
+
+  display: grid;
+
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  gap: 20px;
+
+  align-items: stretch;
+
+}
+
+/* =========================================================
+
+   CARD
+
+========================================================= */
+
+.stepslist-card {
+
+  position: relative;
+
+  display: flex;
+
+  flex-direction: column;
+
+  min-width: 0;
+
+  overflow: hidden;
+
+  background: linear-gradient(
+
+    145deg,
+
+    rgba(255, 255, 255, 0.055),
+
+    rgba(255, 255, 255, 0.018)
+
+  );
+
+  border: 1px solid rgba(255, 255, 255, 0.085);
+
+  border-radius: 18px;
+
+  box-shadow:
+
+    0 10px 30px rgba(0, 0, 0, 0.17),
+
+    inset 0 1px 0 rgba(255, 255, 255, 0.025);
+
+  isolation: isolate;
+
+  transition:
+
+    transform 0.28s ease,
+
+    border-color 0.28s ease,
+
+    box-shadow 0.28s ease;
+
+}
+
+.stepslist-card:hover {
+
+  transform: translateY(-4px);
+
+  border-color: rgba(219, 50, 6, 0.3);
+
+  box-shadow:
+
+    0 16px 38px rgba(0, 0, 0, 0.22),
+
+    0 0 0 1px rgba(219, 50, 6, 0.035);
+
+}
+
+/* =========================================================
+
+   CARD HEADER
+
+========================================================= */
+
+.stepslist-card-header {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 12px;
+
+  min-width: 0;
+
+  padding: 14px 15px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.055);
+
+  background: rgba(255, 255, 255, 0.018);
+
+}
+
+/* =========================================================
+
+   USER
+
+========================================================= */
+
+.stepslist-user {
+
+  display: flex;
+
+  align-items: center;
+
+  min-width: 0;
+
+  gap: 9px;
+
+}
+
+.stepslist-avatar-wrapper {
+
+  position: relative;
+
+  width: 35px;
+
+  height: 35px;
+
+  flex-shrink: 0;
+
+}
+
+.stepslist-avatar {
+
+  display: block;
+
+  width: 37px;
+
+  height: 37px;
+
+  object-fit: cover;
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(255, 255, 255, 0.16);
+
+  background: rgba(255, 255, 255, 0.06);
+
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+
+}
+
+.stepslist-premium-icon {
+
+  position: absolute;
+
+  top: -7px;
+
+  right: -6px;
+
+  width: 18px;
+
+  height: 18px;
+
+  padding: 1px;
+
+  color: #ffd84d;
+
+  background: var(--bg-elevated);
+
+  border-radius: 50%;
+
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+
+}
+
+/* =========================================================
+
+   USER DETAILS
+
+========================================================= */
+
+.stepslist-user-details {
+
+  display: flex;
+
+  flex-direction: column;
+
+  min-width: 0;
+
+}
+
+.stepslist-author {
+
+  min-width: 0;
+
+  color: var(--white-color);
+
+  font-size: 0.84rem;
+
+  font-weight: 700;
+
+  line-height: 1.3;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+
+}
+
+.stepslist-run-date {
+
+  margin-top: 2px;
+
+  color: var(--primary-pera);
+
+  font-size: 0.71rem;
+
+  line-height: 1.3;
+
+  opacity: 0.8;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+
+}
+
+/* =========================================================
+
+   RUN LABEL
+
+========================================================= */
+
+.stepslist-run-label {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 5px;
+
+  flex-shrink: 0;
+
+  padding: 5px 8px;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.035);
+
+  color: var(--primary-pera);
+
+  font-size: 0.61rem;
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.04em;
+
+}
+
+.stepslist-run-label svg {
+
+  color: var(--first-color);
+
+  font-size: 0.72rem;
+
+}
+
+/* =========================================================
+
+   CONTENT
+
+========================================================= */
+
+.stepslist-content {
+
+  min-width: 0;
+
+  padding: 15px 15px 10px;
+
+}
+
+.stepslist-content .stepslist-title {
+
+  margin: 0;
+
+  padding: 0;
+
+  background: transparent;
+
+  color: var(--white-color);
+
+  font-size: 1.24rem;
+
+  font-weight: 700;
+
+  line-height: 1.3;
+
+  text-align: left;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: wrap;
+
+}
+
+/* =========================================================
+
+   NOTES
+
+========================================================= */
+
+.stepslist-notes {
+
+  display: -webkit-box;
+
+  margin: 6px 0 0;
+
+  padding: 0;
+
+  color: var(--primary-pera) !important;
+
+  font-size: 0.84rem;
+
+  font-weight: 400;
+
+  line-height: 1.5;
+
+  opacity: 0.85;
+
+  overflow: hidden;
+
+  -webkit-line-clamp: 2;
+
+  -webkit-box-orient: vertical;
+
+}
+
+/* =========================================================
+
+   MEDIA
+
+========================================================= */
+
+.stepslist-media {
+
+  position: relative;
+
+  width: 100%;
+
+  overflow: hidden;
+
+  background: #111;
+
+}
+
+/* =========================================================
+
+   RUN MEDIA / SWIPER
+
+========================================================= */
+
+.stepslist-media {
+
+  position: relative;
+
+  width: 100%;
+
+  overflow: hidden;
+
+  background: #111;
+
+}
+
+/* =========================================================
+
+   SWIPER
+
+========================================================= */
+
+.stepslist-swiper {
+
+  position: relative;
+
+  width: 100%;
+
+  height: 220px;
+
+  margin: 0;
+
+  padding: 0;
+
+  overflow: hidden;
+
+  background: #111;
+
+  cursor: grab;
+
+  user-select: none;
+
+  -webkit-user-select: none;
+
+  touch-action: pan-y;
+
+}
+
+/*
+
+  When user is dragging image with mouse
+
+*/
+
+.stepslist-swiper:active {
+
+  cursor: grabbing;
+
+}
+
+/*
+
+  Swiper wrapper
+
+*/
+
+.stepslist-swiper .swiper-wrapper {
+
+  height: 100%;
+
+}
+
+/*
+
+  Individual slide
+
+*/
+
+.stepslist-swiper .swiper-slide {
+
+  position: relative;
+
+  width: 100%;
+
+  height: 100%;
+
+  overflow: hidden;
+
+  background: #111;
+
+}
+
+/* =========================================================
+
+   IMAGE
+
+========================================================= */
+
+.stepslist-img {
+
+  display: block;
+
+  width: 100%;
+
+  height: 220px;
+
+  object-fit: cover;
+
+  user-select: none;
+
+  -webkit-user-drag: none;
+
+  pointer-events: none;
+
+  transition: transform 0.55s ease;
+
+}
+
+/*
+
+  Small desktop hover effect.
+
+  No aggressive zoom.
+
+*/
+
+@media (hover: hover) and (pointer: fine) {
+
+  .stepslist-card:hover .stepslist-img {
+
+    transform: scale(1.025);
+
+  }
+
+}
+
+/* =========================================================
+
+   PAGINATION
+
+========================================================= */
+
+.stepslist-swiper .swiper-pagination {
+
+  position: absolute;
+
+  left: 50% !important;
+
+  bottom: 10px !important;
+
+  z-index: 10;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: auto !important;
+
+  min-height: 20px;
+
+  padding: 5px 8px;
+
+  gap: 4px;
+
+  transform: translateX(-50%);
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  border-radius: 999px;
+
+  background: rgba(0, 0, 0, 0.42);
+
+  backdrop-filter: blur(8px);
+
+  -webkit-backdrop-filter: blur(8px);
+
+  pointer-events: auto;
+
+}
+
+.stepslist-swiper.single-image {
+
+  .swiper-pagination {
+
+    display: none !important;
+
+  }
+
+}
+
+/* =========================================================
+
+   PAGINATION DOT
+
+========================================================= */
+
+.stepslist-swiper .swiper-pagination-bullet {
+
+  display: block;
+
+  width: 6px;
+
+  height: 6px;
+
+  margin: 0 !important;
+
+  padding: 0;
+
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.55);
+
+  opacity: 1;
+
+  cursor: pointer;
+
+  transition:
+
+    width 0.25s ease,
+
+background 0.25s ease,
+
+    opacity 0.25s ease;
+
+}
+
+/* =========================================================
+
+   ACTIVE DOT
+
+========================================================= */
+
+.stepslist-swiper .swiper-pagination-bullet-active {
+
+  width: 18px;
+
+  border-radius: 999px;
+
+  background: var(--first-color);
+
+  opacity: 1;
+
+}
+
+/* =========================================================
+
+   DESKTOP
+
+========================================================= */
+
+@media (min-width: 769px) {
+
+  .stepslist-swiper {
+
+    cursor: grab;
+
+  }
+
+  .stepslist-swiper:active {
+
+    cursor: grabbing;
+
+  }
+
+}
+
+/* =========================================================
+
+   MOBILE
+
+========================================================= */
+
+@media (max-width: 650px) {
+
+  .stepslist-swiper {
+
+    height: 250px;
+
+    cursor: grab;
+
+  }
+
+  .stepslist-img {
+
+    height: 250px;
+
+  }
+
+  .stepslist-swiper .swiper-pagination {
+
+    bottom: 9px !important;
+
+    padding: 4px 7px;
+
+    gap: 4px;
+
+  }
+
+  .stepslist-swiper .swiper-pagination-bullet {
+
+    width: 6px;
+
+    height: 6px;
+
+  }
+
+  .stepslist-swiper .swiper-pagination-bullet-active {
+
+    width: 17px;
+
+  }
+
+}
+
+/* =========================================================
+
+   SMALL MOBILE
+
+========================================================= */
+
+@media (max-width: 400px) {
+
+  .stepslist-swiper {
+
+    height: 225px;
+
+  }
+
+  .stepslist-img {
+
+    height: 225px;
+
+  }
+
+}
+
+/* =========================================================
+
+   ACHIEVEMENTS
+
+========================================================= */
+
+// .stepslist-achievements {
+
+//   display: flex;
+
+//   align-items: center;
+
+//   min-height: 34px;
+
+//   padding: 8px 15px;
+
+//   border-bottom: 1px solid rgba(255, 255, 255, 0.055);
+
+//   background: rgba(255, 255, 255, 0.012);
+
+// }
+
+/* =========================================================
+
+   RUN STATS
+
+   Important:
+
+   No separate bright cards.
+
+   Everything belongs to the same visual system.
+
+========================================================= */
+
+.stepslist-info {
+
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  column-gap: 16px;
+
+  row-gap: 8px;
+
+  margin: 0;
+
+  padding: 12px 10px;
+
+  margin-bottom: 18px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.055);
+
+}
+
+/* individual stat */
+
+.stepslist-stat {
+
+  display: flex;
+
+  align-items: center;
+
+  min-width: 0;
+
+  gap: 8px;
+
+  padding: 7px 0;
+
+  // border-bottom: 0.7px solid rgba(255, 255, 255, 0.035);
+
+}
+
+.stepslist-stat:nth-last-child(-n + 2) {
+
+  border-bottom: none;
+
+}
+
+/* icons */
+
+.stepslist-stat > svg {
+
+  flex-shrink: 0;
+
+  width: 24px;
+
+  height: 24px;
+
+  color: var(--first-color);
+
+  // opacity: 0.85;
+
+}
+
+/* text */
+
+.stepslist-stat > div {
+
+  display: flex;
+
+  flex-direction: column;
+
+  min-width: 0;
+
+}
+
+.stepslist-stat span {
+
+  margin-bottom: 2px;
+
+  color: var(--primary-pera);
+
+  font-size: 0.8rem;
+
+  line-height: 1.2;
+
+  opacity: 0.72;
+
+}
+
+.stepslist-stat strong {
+
+  min-width: 0;
+
+  color: rgba(255, 255, 255, 0.88);
+
+  font-size: 1rem;
+
+  font-weight: 650;
+
+  line-height: 1.35;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: wrap;
+
+}
+
+/* location takes full row */
+
+.stepslist-stat-location {
+
+  grid-column: 1 / -1;
+
+  border-bottom: none;
+
+}
+
+/* =========================================================
+
+   INTERACTIONS
+
+========================================================= */
+
+.stepslist-interactions {
+
+  margin-top: auto;
+
+  padding: 10px 15px 13px;
+
+  background: rgba(0, 0, 0, 0.035);
+
+}
+
+/* =========================================================
+
+   EMPTY STATE
+
+========================================================= */
+
+.stepslist-empty {
+
+  width: min(100%, 500px);
+
+  margin: 60px auto;
+
+  padding: 42px 25px;
+
+  text-align: center;
+
+  background: linear-gradient(
+
+    145deg,
+
+    rgba(255, 255, 255, 0.045),
+
+    rgba(255, 255, 255, 0.018)
+
+  );
+
+  border: 1px solid var(--border-color);
+
+  border-radius: 18px;
+
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.14);
+
+}
+
+.stepslist-empty-icon {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 58px;
+
+  height: 58px;
+
+  margin: 0 auto 16px;
+
+  border-radius: 50%;
+
+  background: rgba(219, 50, 6, 0.08);
+
+  border: 1px solid rgba(219, 50, 6, 0.2);
+
+  color: var(--first-color);
+
+  font-size: 1.35rem;
+
+}
+
+.stepslist-empty h3 {
+
+  margin: 0 0 7px;
+
+  color: var(--white-color);
+
+  font-size: 1.1rem;
+
+  font-weight: 700;
+
+}
+
+.stepslist-empty p {
+
+  margin: 0;
+
+  color: var(--primary-pera);
+
+  font-size: 0.8rem;
+
+  line-height: 1.5;
+
+}
+
+/* =========================================================
+
+   LOAD MORE
+
+========================================================= */
+
+.load-more-wrapper {
+
+  display: flex;
+
+  justify-content: center;
+
+  margin-top: 32px;
+
+}
+
+.load-more-btn {
+
+  min-width: 145px;
+
+  padding: 10px 24px;
+
+  border: 1px solid rgba(219, 50, 6, 0.38);
+
+  border-radius: 999px;
+
+  background: rgba(219, 50, 6, 0.07);
+
+  color: var(--white-color);
+
+  font-size: 0.78rem;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+
+background 0.25s ease,
+
+    border-color 0.25s ease,
+
+    transform 0.2s ease,
+
+    box-shadow 0.25s ease;
+
+}
+
+.load-more-btn:hover {
+
+  background: var(--first-color);
+
+  border-color: var(--first-color);
+
+  box-shadow: 0 8px 22px rgba(219, 50, 6, 0.22);
+
+  transform: translateY(-2px);
+
+}
+
+.load-more-btn:active {
+
+  transform: translateY(0);
+
+}
+
+/* =========================================================
+
+   LARGE DESKTOP
+
+   4 CARDS
+
+========================================================= */
+
+@media (min-width: 1251px) {
+
+  .stepslist-feed {
+
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  }
+
+}
+
+/* =========================================================
+
+   LAPTOP
+
+   3 CARDS
+
+========================================================= */
+
+@media (max-width: 1250px) {
+
+  .stepslist-wrapper {
+
+    padding-inline: 24px;
+
+  }
+
+  .stepslist-feed {
+
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 18px;
+
+  }
+
+}
+
+/* =========================================================
+
+   TABLET
+
+   2 CARDS
+
+========================================================= */
+
+@media (max-width: 950px) {
+
+  .stepslist-wrapper {
+
+    padding-top: 125px;
+
+  }
+
+  .stepslist-header {
+
+    align-items: stretch;
+
+    flex-direction: column;
+
+    gap: 22px;
+
+  }
+
+  .stepslist-toggle {
+
+    width: 100%;
+
+    max-width: 440px;
+
+    margin: 0 auto;
+
+  }
+
+  .stepslist-feed {
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 16px;
+
+  }
+
+}
+
+/* =========================================================
+
+   MOBILE
+
+   1 CARD
+
+========================================================= */
+
+@media (max-width: 650px) {
+
+  .stepslist-wrapper {
+
+    padding: 105px 14px 45px;
+
+  }
+
+  .stepslist-heading {
+
+    text-align: left;
+
+  }
+
+  .stepslist-heading h2 {
+
+    font-size: 2rem;
+
+  }
+
+  .stepslist-heading p {
+
+    font-size: 0.8rem;
+
+  }
+
+  .stepslist-eyebrow {
+
+    font-size: 0.62rem;
+
+  }
+
+  .stepslist-toggle {
+
+    width: 100%;
+
+    margin: 0 0 4px;
+
+  }
+
+  .stepslist-toggle button {
+
+    min-height: 37px;
+
+    font-size: 0.72rem;
+
+  }
+
+  .stepslist-feed {
+
+    grid-template-columns: 1fr;
+
+    gap: 16px;
+
+  }
+
+  .stepslist-card {
+
+    border-radius: 16px;
+
+  }
+
+  .stepslist-card:hover {
+
+    transform: none;
+
+    border-color: rgba(255, 255, 255, 0.085);
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.17);
+
+  }
+
+  .stepslist-card:hover .stepslist-img {
+
+    transform: none;
+
+  }
+
+  .stepslist-card-header {
+
+    padding: 13px 14px;
+
+  }
+
+  .stepslist-content {
+
+    padding-inline: 14px;
+
+  }
+
+  .stepslist-swiper,
+
+  .stepslist-img {
+
+    height: 250px;
+
+  }
+
+  .stepslist-achievements {
+
+    padding-inline: 14px;
+
+  }
+
+  .stepslist-info {
+
+    padding-inline: 14px;
+
+    column-gap: 14px;
+
+  }
+
+  .stepslist-interactions {
+
+    padding-inline: 14px;
+
+  }
+
+}
+
+/* =========================================================
+
+   SMALL MOBILE
+
+========================================================= */
+
+@media (max-width: 400px) {
+
+  .stepslist-wrapper {
+
+    padding-inline: 10px;
+
+  }
+
+  .stepslist-heading h2 {
+
+    font-size: 1.8rem;
+
+  }
+
+  .stepslist-toggle button {
+
+    font-size: 0.68rem;
+
+    padding-inline: 8px;
+
+  }
+
+  .stepslist-card-header {
+
+    padding-inline: 12px;
+
+  }
+
+  .stepslist-content {
+
+    padding-inline: 12px;
+
+  }
+
+  .stepslist-swiper,
+
+  .stepslist-img {
+
+    height: 225px;
+
+  }
+
+  .stepslist-achievements {
+
+    padding-inline: 12px;
+
+  }
+
+  .stepslist-info {
+
+    padding-inline: 12px;
+
+  }
+
+  .stepslist-interactions {
+
+    padding-inline: 12px;
+
+  }
+
+}
+
+/* =========================================================
+
+   REDUCED MOTION
+
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .stepslist-card,
+
+  .stepslist-img,
+
+  .stepslist-toggle button,
+
+  .load-more-btn {
+
+    transition: none;
+
+  }
+
+}
+
+/* =========================================================
+
+   LOCATION
+
+   Remove unwanted underline from location text
+
+========================================================= */
+
+.stepslist-location-text {
+
+  text-decoration: none !important;
+
+  -webkit-text-decoration: none !important;
+
+  border-bottom: none !important;
+
+  box-shadow: none !important;
+
+  cursor: default;
+
+}
+
+.stepslist-location-text:hover,
+
+.stepslist-location-text:focus,
+
+.stepslist-location-text:active {
+
+  text-decoration: none !important;
+
+  border-bottom: none !important;
+
+  box-shadow: none !important;
+
+}
+
+.stepslist-stat-location,
+
+.stepslist-stat-location * {
+
+  text-decoration: none !important;
+
+}
+
+.stepslist-avatar-placeholder {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 37px;
+
+  height: 37px;
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(255, 255, 255, 0.16);
+
+  background: rgba(255, 255, 255, 0.06);
+
+  color: var(--white-color);
+
+  font-size: 0.9rem;
+
+  font-weight: 700;
+
+  line-height: 1;
+
+  user-select: none;
+
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+
+}
+
+/* Workout: show the entire generated statistics poster without cropping.
+
+   Other activity images retain their existing cover behavior. */
+
+.stepslist-swiper.stepslist-workout-swiper {
+
+  height: 320px;
+
+}
+
+.stepslist-workout-swiper .swiper-slide {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+}
+
+.stepslist-workout-swiper .stepslist-img.stepslist-workout-cover {
+
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: contain;
+
+  background: #111;
+
+}
+
+@media (hover: hover) and (pointer: fine) {
+
+  .stepslist-card:hover .stepslist-workout-cover {
+
+    transform: none;
+
+  }
+
+}
+
+@media (max-width: 650px) {
+
+  .stepslist-swiper.stepslist-workout-swiper {
+
+    height: 390px;
+
+  }
+
+}
+
+@media (max-width: 400px) {
+
+  .stepslist-swiper.stepslist-workout-swiper {
+
+    height: 350px;
+
+  }
+
+}
+
+/* Activity owner controls */
+
+.stepslist-header-actions {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  flex-shrink: 0;
+
+}
+
+.stepslist-menu-wrap {
+
+  position: relative;
+
+}
+
+.stepslist-menu-trigger {
+
+  display: grid;
+
+  place-items: center;
+
+  width: 30px;
+
+  height: 30px;
+
+  padding: 0;
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.04);
+
+  color: var(--white-color);
+
+  cursor: pointer;
+
+}
+
+.stepslist-menu-trigger:hover {
+
+  color: var(--first-color);
+
+}
+
+.stepslist-menu {
+
+  position: absolute;
+
+  right: 0;
+
+  top: calc(100% + 6px);
+
+  z-index: 30;
+
+  width: 135px;
+
+  padding: 5px;
+
+  background: var(--bg-elevated, #242424);
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+
+  border-radius: 10px;
+
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35);
+
+}
+
+.stepslist-menu button {
+
+  width: 100%;
+
+  padding: 10px;
+
+  text-align: left;
+
+  color: var(--white-color);
+
+  background: transparent;
+
+  border: 0;
+
+  border-radius: 6px;
+
+  cursor: pointer;
+
+  font-size: 0.8rem;
+
+}
+
+.stepslist-menu button:hover {
+
+  background: rgba(255, 255, 255, 0.08);
+
+}
+
+.stepslist-menu button.danger {
+
+  color: #ff7777;
+
+}
+
+.stepslist-edited {
+
+  display: block;
+
+  margin-top: 7px;
+
+  color: var(--primary-pera);
+
+  font-size: 0.69rem;
+
+  opacity: 0.8;
+
+}
+
+/* Activity edit dialog */
+
+.stepslist-edit-overlay {
+
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 10000;
+
+  display: grid;
+
+  place-items: center;
+
+  padding: 18px;
+
+  background: rgba(0, 0, 0, 0.75);
+
+  backdrop-filter: blur(5px);
+
+}
+
+.stepslist-edit-modal {
+
+  width: min(100%, 560px);
+
+  max-height: min(90vh, 850px);
+
+  overflow-y: auto;
+
+  padding: 22px;
+
+  border: 1px solid rgba(255, 255, 255, 0.14);
+
+  border-radius: 18px;
+
+  background: var(--bg-elevated, #202020);
+
+  color: var(--white-color);
+
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+
+}
+
+.stepslist-edit-head {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  margin-bottom: 18px;
+
+}
+
+.stepslist-edit-head h3 {
+
+  margin: 0;
+
+  font-size: 1.25rem;
+
+}
+
+.stepslist-edit-head button {
+
+  border: 0;
+
+  background: transparent;
+
+  color: inherit;
+
+  cursor: pointer;
+
+}
+
+.stepslist-edit-modal label {
+
+  display: grid;
+
+  gap: 7px;
+
+  margin-bottom: 16px;
+
+  font-size: 0.82rem;
+
+  font-weight: 600;
+
+}
+
+.stepslist-edit-modal input:not([type="file"]),
+
+.stepslist-edit-modal textarea {
+
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 11px 12px;
+
+  color: inherit;
+
+  background: rgba(255, 255, 255, 0.04);
+
+  border: 1px solid rgba(255, 255, 255, 0.16);
+
+  border-radius: 9px;
+
+  font: inherit;
+
+  resize: vertical;
+
+}
+
+.stepslist-edit-photo-heading {
+
+  margin-bottom: 10px;
+
+  font-size: 0.82rem;
+
+  font-weight: 700;
+
+}
+
+.stepslist-edit-photos {
+
+  display: grid;
+
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 9px;
+
+}
+
+.stepslist-edit-photo {
+
+  position: relative;
+
+  aspect-ratio: 1;
+
+  min-width: 0;
+
+  border-radius: 9px;
+
+  overflow: hidden;
+
+  background: #111;
+
+}
+
+.stepslist-edit-photo img {
+
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
+
+}
+
+.stepslist-edit-photo button {
+
+  position: absolute;
+
+  top: 5px;
+
+  right: 5px;
+
+  display: grid;
+
+  place-items: center;
+
+  width: 27px;
+
+  height: 27px;
+
+  border: 0;
+
+  border-radius: 50%;
+
+  background: rgba(0, 0, 0, 0.8);
+
+  color: #ff7777;
+
+  cursor: pointer;
+
+}
+
+.stepslist-edit-add {
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 7px;
+
+  aspect-ratio: 1;
+
+  border: 1px dashed rgba(255, 255, 255, 0.25);
+
+  border-radius: 9px;
+
+  background: rgba(255, 255, 255, 0.03);
+
+  color: var(--primary-pera);
+
+  cursor: pointer;
+
+}
+
+.stepslist-edit-actions {
+
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 10px;
+
+  margin-top: 22px;
+
+}
+
+.stepslist-edit-actions button {
+
+  padding: 11px 16px;
+
+  border-radius: 9px;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  background: transparent;
+
+  color: var(--white-color);
+
+  cursor: pointer;
+
+}
+
+.stepslist-edit-actions button[type="submit"] {
+
+  background: var(--first-color);
+
+  color: white;
+
+  border-color: transparent;
+
+}
+
+.stepslist-edit-actions button:disabled {
+
+  opacity: 0.5;
+
+  cursor: not-allowed;
+
+}
+
+@media (max-width: 400px) {
+
+  .stepslist-header-actions {
+
+    gap: 4px;
+
+  }
+
+  .stepslist-run-label {
+
+    padding-inline: 5px;
+
+  }
+
+  .stepslist-edit-modal {
+
+    padding: 15px;
+
+  }
+
+}
+
+/* ==========================================
+
+   DELETE ACTIVITY MODAL
+
+========================================== */
+
+.stepslist-delete-overlay {
+
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 2000000;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 16px;
+
+  background: rgba(0, 0, 0, 0.78);
+
+  backdrop-filter: blur(8px);
+
+}
+
+.stepslist-delete-modal {
+
+  position: relative;
+
+  width: min(100%, 430px);
+
+  padding: 34px 26px 26px;
+
+  border: 1px solid var(--border-color);
+
+  border-radius: 18px;
+
+  background: var(--bg-elevated, #1c1c1c);
+
+  color: var(--white-color, #fff);
+
+  text-align: center;
+
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+
+  animation: deleteModalShow 0.2s ease;
+
+}
+
+.stepslist-delete-close {
+
+  position: absolute;
+
+  top: 15px;
+
+  right: 15px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 30px;
+
+  height: 30px;
+
+  border: 0;
+
+  border-radius: 8px;
+
+  background: rgba(255, 255, 255, 0.06);
+
+  color: var(--white-color, #fff);
+
+  cursor: pointer;
+
+}
+
+.stepslist-delete-icon {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 68px;
+
+  height: 68px;
+
+  margin: 0 auto 20px;
+
+  border-radius: 50%;
+
+  background: rgba(239, 68, 68, 0.1);
+
+  color: #ef4444;
+
+  font-size: 28px;
+
+}
+
+.stepslist-delete-modal h3 {
+
+  margin: 0 0 12px;
+
+  color: var(--white-color, #fff);
+
+  font-size: 23px;
+
+  font-weight: 750;
+
+}
+
+.stepslist-delete-modal p {
+
+  margin: 0;
+
+  color: var(--primary-pera, #aaa);
+
+  font-size: 14px;
+
+  line-height: 1.6;
+
+}
+
+.stepslist-delete-modal p strong {
+
+  color: var(--white-color, #fff);
+
+  font-weight: 700;
+
+  overflow-wrap: anywhere;
+
+}
+
+.stepslist-delete-warning {
+
+  margin-top: 12px !important;
+
+  color: #ef4444 !important;
+
+  font-size: 12px !important;
+
+}
+
+.stepslist-delete-actions {
+
+  display: flex;
+
+  gap: 12px;
+
+  margin-top: 28px;
+
+}
+
+.stepslist-delete-actions button {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  flex: 1;
+
+  min-height: 45px;
+
+  padding: 10px 12px;
+
+  border-radius: 10px;
+
+  border: 1px solid transparent;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+
+}
+
+.stepslist-delete-actions .cancel {
+
+  background: rgba(255, 255, 255, 0.06);
+
+  border-color: var(--border-color);
+
+  color: var(--white-color, #fff);
+
+}
+
+.stepslist-delete-actions .cancel:hover {
+
+  background: rgba(255, 255, 255, 0.12);
+
+}
+
+.stepslist-delete-actions .delete {
+
+  background: #dc2626;
+
+  color: #fff;
+
+}
+
+.stepslist-delete-actions .delete:hover:not(:disabled) {
+
+  background: #b91c1c;
+
+}
+
+.stepslist-delete-actions button:disabled,
+
+.stepslist-delete-close:disabled {
+
+  opacity: 0.5;
+
+  cursor: not-allowed;
+
+}
+
+@keyframes deleteModalShow {
+
+  from {
+
+    opacity: 0;
+
+    transform: translateY(10px) scale(0.97);
+
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform: translateY(0) scale(1);
+
+  }
+
+}
+
+@media (max-width: 450px) {
+
+  .stepslist-delete-modal {
+
+    padding: 32px 18px 22px;
+
+  }
+
+  .stepslist-delete-actions {
+
+    gap: 8px;
+
+  }
+
+  .stepslist-delete-actions button {
+
+    font-size: 12px;
+
+  }
+
+}
+
+/* =========================================
+
+   ACTIVITY FILTERS
+
+========================================= */
+
+.stepslist-filters {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 14px;
+
+  margin: 0 0 28px;
+
+  padding: 15px;
+
+  border: 1px solid var(--border-color);
+
+  border-radius: 14px;
+
+  background: rgba(255, 255, 255, 0.025);
+
+}
+
+.stepslist-filter-types {
+
+  display: flex;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 7px;
+
+  button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 35px;
+
+    padding: 0 15px;
+
+    border: 1px solid var(--border-color);
+
+    border-radius: 8px;
+
+    background: transparent;
+
+    color: var(--primary-pera);
+
+    font-size: 0.75rem;
+
+    font-weight: 650;
+
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+
+    &:hover {
+
+      color: var(--white-color);
+
+      border-color: var(--first-color);
+
+    }
+
+    &.active {
+
+      background: var(--first-color);
+
+      border-color: var(--first-color);
+
+      color: #fff;
+
+    }
+
+  }
+
+}
+
+.stepslist-filter-controls {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  select {
+
+    flex: 1;
+
+    min-width: 0;
+
+    max-width: 220px;
+
+    height: 38px;
+
+    padding: 0 12px;
+
+    border: 1px solid var(--border-color);
+
+    border-radius: 8px;
+
+    background: var(--bg-elevated);
+
+    color: var(--white-color);
+
+    font-size: 0.76rem;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    outline: none;
+
+    &:focus {
+
+      border-color: var(--first-color);
+
+    }
+
+  }
+
+}
+
+.stepslist-filter-footer {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+  color: var(--primary-pera);
+
+  font-size: 0.73rem;
+
+}
+
+.stepslist-filter-reset {
+
+  padding: 6px 10px;
+
+  border: 0;
+
+  border-radius: 7px;
+
+  background: rgba(255, 255, 255, 0.06);
+
+  color: var(--white-color);
+
+  font-size: 0.73rem;
+
+  font-weight: 650;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+
+  &:hover {
+
+    background: var(--first-color);
+
+    color: #fff;
+
+  }
+
+}
+
+/* =========================================
+
+   MOBILE
+
+========================================= */
+
+@media (max-width: 650px) {
+
+  .stepslist-filters {
+
+    padding: 11px;
+
+    gap: 12px;
+
+    margin-bottom: 20px;
+
+  }
+
+  .stepslist-filter-types {
+
+    display: grid;
+
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+
+    gap: 5px;
+
+    button {
+
+      min-width: 0;
+
+      min-height: 34px;
+
+      padding: 0 4px;
+
+      font-size: 0.65rem;
+
+      border-radius: 7px;
+
+    }
+
+  }
+
+  .stepslist-filter-controls {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 7px;
+
+    select {
+
+      width: 100%;
+
+      max-width: none;
+
+      height: 36px;
+
+      padding: 0 7px;
+
+      font-size: 0.7rem;
+
+    }
+
+  }
+
+  .stepslist-filter-footer {
+
+    font-size: 0.68rem;
+
+  }
+
+}
+
+@media (max-width: 420px) {
+
+  .stepslist-filter-types {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 6px;
+
+    button {
+
+      flex: 1 1 calc(33.333% - 6px);
+
+      min-width: 0;
+
+      padding: 9px 5px;
+
+      font-size: 0.7rem;
+
+    }
+
+  }
+
+}
+
+@media (hover: hover) and (pointer: fine) {
+
+  .stepslist-card:hover
+
+  .stepslist-workout-swiper
+
+  .stepslist-img.stepslist-workout-cover {
+
+    transform: none;
+
+  }
+
+}
+
+/* ==========================================
+
+   FITRACK — ROUTE REPLAY
+
+========================================== */
+
+.stepslist-media {
+
+    position: relative;
+
+}
+
+.stepslist-replay-btn {
+
+    position: absolute;
+
+    top: 12px;
+
+    right: 12px;
+
+    z-index: 15;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    width: auto;
+
+    min-height: 32px;
+
+    padding: 0 12px;
+
+    border: 1px solid rgba(255, 255, 255, 0.22);
+
+    border-radius: 999px;
+
+    background: rgba(12, 14, 18, 0.78);
+
+    color: #fff;
+
+    backdrop-filter: blur(12px);
+
+    -webkit-backdrop-filter: blur(12px);
+
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+
+    font-size: 11px;
+
+    font-weight: 650;
+
+    line-height: 1;
+
+    letter-spacing: 0.01em;
+
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    transition:
+
+background 0.2s ease,
+
+        border-color 0.2s ease,
+
+        transform 0.2s ease;
+
+    svg {
+
+        width: 12px;
+
+        height: 12px;
+
+        color: #ff6842;
+
+        fill: #ff6842;
+
+        stroke-width: 2;
+
+    }
+
+    &:hover {
+
+        background: rgba(219, 50, 6, 0.92);
+
+        border-color: rgba(219, 50, 6, 0.95);
+
+        transform: translateY(-1px);
+
+        svg {
+
+            color: #fff;
+
+            fill: #fff;
+
+        }
+
+    }
+
+    &:active {
+
+        transform: scale(0.97);
+
+    }
+
+    &:focus-visible {
+
+        outline: 2px solid #ff6842;
+
+        outline-offset: 3px;
+
+    }
+
+}
+
+@media (max-width: 650px) {
+
+    .stepslist-replay-btn {
+
+        top: 10px;
+
+        right: 10px;
+
+        min-height: 30px;
+
+        padding: 0 10px;
+
+        font-size: 10px;
+
+    }
+
+}
+
+/* ==========================================
+
+   ROUTE REPLAY — NO PHOTO FALLBACK
+
+========================================== */
+
+.stepslist-replay-fallback {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    padding: 0 12px 10px;
+
+    .stepslist-replay-btn {
+
+        position: static;
+
+    }
+
+}
+
+
+/* =========================================================
+   LENS SETTINGS — COMPACT TOOLBAR + MODAL / MOBILE SHEET
+   ========================================================= */
+.lens-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    margin-bottom: 24px;
+    padding: 4px 0 18px;
+    border-bottom: 1px solid rgba(255,255,255,.10);
+}
+.lens-toolbar-identity { min-width: 0; }
+.lens-toolbar-kicker, .lens-settings-eyebrow {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .17em;
+    color: var(--first-color, #db3206);
+}
+.lens-toolbar-identity h2 {
+    margin: 0;
+    font-size: clamp(25px, 3vw, 38px);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -.045em;
+    color: var(--white-color, #fff);
+}
+.lens-toolbar-actions { display: flex; align-items: center; gap: 17px; }
+.lens-toolbar-count { color: var(--primary-pera, #96999f); font-size: 12px; white-space: nowrap; }
+.lens-settings-trigger {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    min-height: 40px;
+    padding: 0 16px;
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 10px;
+    background: rgba(255,255,255,.055);
+    color: var(--white-color, #fff);
+    font: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background .2s, border-color .2s;
+}
+.lens-settings-trigger svg { width: 16px; height: 16px; color: var(--first-color, #db3206); }
+.lens-settings-trigger:hover, .lens-settings-trigger.is-open {
+    background: rgba(255,255,255,.10);
+    border-color: rgba(255,255,255,.30);
+}
+.lens-settings-indicator {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--first-color, #db3206);
+}
+.lens-settings-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2147483000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: rgba(0,0,0,.72);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+}
+.lens-settings-panel {
+    display: flex;
+    flex-direction: column;
+    width: min(100%, 520px);
+    max-height: min(760px, calc(100dvh - 40px));
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: 20px;
+    background: #17191d;
+    color: #f5f5f6;
+    box-shadow: 0 30px 90px rgba(0,0,0,.5);
+    animation: lensPanelEnter .22s ease-out both;
+}
+.lens-settings-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 23px 24px 18px;
+    border-bottom: 1px solid rgba(255,255,255,.09);
+}
+.lens-settings-head h3 { margin: 0; font-size: 23px; font-weight: 800; letter-spacing: -.04em; }
+.lens-settings-close {
+    display: grid; place-items: center;
+    flex: 0 0 34px;
+    width: 34px; height: 34px;
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 9px;
+    background: rgba(255,255,255,.05);
+    color: #fff;
+    cursor: pointer;
+}
+.lens-settings-close:hover { background: rgba(255,255,255,.12); }
+.lens-settings-body { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding: 4px 24px 14px; overscroll-behavior: contain; }
+.lens-settings-section { padding: 19px 0 20px; border-bottom: 1px solid rgba(255,255,255,.08); }
+.lens-settings-section:last-child { border-bottom: 0; }
+.lens-settings-section-heading { display: flex; align-items: center; gap: 10px; margin-bottom: 13px; }
+.lens-settings-section-heading > span { font-size: 10px; font-weight: 800; color: #e45832; }
+.lens-settings-section-heading h4 { margin: 0; font-size: 13px; font-weight: 750; letter-spacing: -.01em; }
+.lens-settings-segment { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 5px; border-radius: 11px; background: #22252a; }
+.lens-settings-segment button {
+    min-height: 42px;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: #a5a8b0;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+.lens-settings-segment button.active { background: #393c42; color: #fff; box-shadow: 0 2px 8px rgba(0,0,0,.18); }
+.lens-settings-segment button:disabled { opacity: .35; cursor: not-allowed; }
+.lens-settings-types { display: flex; flex-wrap: wrap; gap: 7px; }
+.lens-settings-types button {
+    min-height: 34px;
+    padding: 0 12px;
+    border: 1px solid rgba(255,255,255,.11);
+    border-radius: 8px;
+    background: rgba(255,255,255,.035);
+    color: #b7bac0;
+    font: inherit;
+    font-size: 11px;
+    font-weight: 650;
+    cursor: pointer;
+    transition: background .18s, border-color .18s, color .18s;
+}
+.lens-settings-types button:hover { color: #fff; border-color: rgba(255,255,255,.28); }
+.lens-settings-types button.active { color: #fff; border-color: #db3206; background: rgba(219,50,6,.2); }
+.lens-settings-selects { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
+.lens-settings-selects label { display: flex; flex-direction: column; min-width: 0; gap: 8px; }
+.lens-settings-selects label > span { font-size: 11px; color: #a5a8b0; }
+.lens-settings-selects select {
+    width: 100%;
+    min-width: 0;
+    min-height: 42px;
+    padding: 0 10px;
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 9px;
+    background: #26292e;
+    color: #fff;
+    font: inherit;
+    font-size: 12px;
+    outline: none;
+    color-scheme: dark;
+}
+.lens-settings-selects select:focus-visible { border-color: #db3206; }
+.lens-settings-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 16px 24px;
+    border-top: 1px solid rgba(255,255,255,.09);
+    background: #1b1d21;
+}
+.lens-settings-footer button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    min-height: 42px;
+    padding: 0 18px;
+    border-radius: 9px;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 750;
+    cursor: pointer;
+}
+.lens-settings-reset { border: 1px solid rgba(255,255,255,.14); background: transparent; color: #d3d5d9; }
+.lens-settings-done { border: 1px solid #db3206; background: #db3206; color: #fff; min-width: 128px; }
+.lens-settings-reset:hover { background: rgba(255,255,255,.07); }
+.lens-settings-done:hover { background: #f04316; }
+.lens-settings-overlay button:focus-visible, .lens-settings-trigger:focus-visible { outline: 2px solid #f36542; outline-offset: 3px; }
+@keyframes lensPanelEnter { from { opacity: 0; transform: translateY(12px) scale(.985); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@media (max-width: 650px) {
+    .lens-toolbar { gap: 10px; margin-bottom: 16px; padding-bottom: 14px; }
+    .lens-toolbar-kicker { font-size: 9px; }
+    .lens-toolbar-identity h2 { font-size: 27px; }
+    .lens-toolbar-actions { gap: 8px; }
+    .lens-toolbar-count { display: none; }
+    .lens-settings-trigger { min-height: 38px; padding: 0 12px; }
+    .lens-settings-overlay { align-items: flex-end; padding: 0; }
+    .lens-settings-panel {
+        width: 100%;
+        max-height: min(88dvh, 800px);
+        border-radius: 20px 20px 0 0;
+        border-bottom: 0;
+        animation: lensSheetEnter .25s ease-out both;
+    }
+    .lens-settings-head { padding: 20px 18px 15px; }
+    .lens-settings-body { padding: 0 18px 12px; }
+    .lens-settings-footer { padding: 12px 18px max(16px, env(safe-area-inset-bottom)); }
+    .lens-settings-selects { gap: 9px; }
+}
+@keyframes lensSheetEnter { from { opacity: .5; transform: translateY(100%); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { .lens-settings-panel { animation: none; } }
+
+/* Activity visibility — minimal, responsive */
+.stepslist-private-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  align-self: flex-start;
+  margin: 10px 15px 0;
+  padding: 5px 9px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 7px;
+  color: var(--primary-pera, #aaa);
+  background: rgba(255,255,255,.035);
+  font-size: 11px;
+  font-weight: 600;
+}
+.stepslist-menu .stepslist-menu-visibility {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.stepslist-menu .stepslist-menu-visibility svg { flex: 0 0 auto; font-size: 14px; }
+.stepslist-menu button:disabled { opacity: .5; cursor: wait; }
+@media (max-width: 650px) {
+  .stepslist-private-indicator { margin-left: 14px; margin-right: 14px; }
+}
+/* Append to the existing steplist.scss */
+.stepslist-author-link {
+    display: flex; align-items: center; gap: 10px; min-width: 0;
+    color: inherit; text-decoration: none; cursor: pointer;
+    &:hover .stepslist-author { color: var(--first-color, #db3206); }
+    &:focus-visible { outline: 2px solid var(--first-color, #db3206); outline-offset: 5px; border-radius: 8px; }
+    .stepslist-author { transition: color .2s ease; }
+}
+/* =========================================
+   FITRACK — FEED USER PRESENCE
+========================================= */
+
+.stepslist-avatar-wrapper {
+    position: relative;
+
+    > .ft-user-presence {
+        position: absolute;
+        right: -4px;
+        bottom: -4px;
+        z-index: 5;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 14px;
+        height: 14px;
+        padding: 2px;
+
+        border-radius: 50%;
+        background: #17191e;
+        box-sizing: border-box;
+
+        .ft-user-presence__dot {
+            width: 9px;
+            height: 9px;
+            flex-shrink: 0;
+            border-radius: 50%;
+        }
+
+        &.is-online .ft-user-presence__dot {
+            background: #22c55e;
+            box-shadow: 0 0 7px rgba(34, 197, 94, 0.45);
+        }
+
+        &.is-offline .ft-user-presence__dot {
+            background: #777b85;
+            box-shadow: none;
+        }
+    }
+}

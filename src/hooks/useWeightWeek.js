@@ -1,16 +1,22 @@
+
 import { useEffect, useState } from "react";
-import { auth } from "../firebase";
 import { subscribeWeek } from "../api/weight.service";
 
-export const useWeightWeek = () => {
-  const [week, setWeek] = useState(null);
+export const useWeightWeek = (uid) => {
+    const [week, setWeek] = useState(null);
 
-  useEffect(() => {
-    if (!auth.currentUser) return;
+    useEffect(() => {
+        if (!uid) {
+            setWeek(null);
+            return;
+        }
 
-    const unsub = subscribeWeek(auth.currentUser.uid, setWeek);
-    return () => unsub();
-  }, []);
+        setWeek(null);
 
-  return week;
+        const unsubscribe = subscribeWeek(uid, setWeek);
+
+        return () => unsubscribe();
+    }, [uid]);
+
+    return week;
 };

@@ -1,7 +1,9 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { auth } from "../../firebase";
-
+import { useAuth } from "../account/AuthContext";
+import { canAccessWeightControl } from "../account/premiumAccess";
+import { Link } from "react-router-dom";
 import { createWeek, addWeightEntry } from "../../api/weight.service";
 import { useWeightWeek } from "../../hooks/useWeightWeek";
 import { useWeightEntries } from "../../hooks/useWeightEntries";
@@ -15,22 +17,52 @@ import ProgressCard from "../weightcontrol/ProgressCard";
 import { FaFireAlt, FaPizzaSlice, FaCarrot } from "react-icons/fa";
 import { FaCheese } from "react-icons/fa6";
 
+import BMICalculator from "../footer/calculate/BMICalculator";
+
+import './weightcontrol.scss';
+
+
 export default function WeightDashboard() {
-  const week = useWeightWeek();
-  const entries = useWeightEntries(week?.id);
+    const { user, loading: authLoading } = useAuth();
+
+    const [premiumNow, setPremiumNow] = useState(
+        () => Date.now()
+    );
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setPremiumNow(Date.now());
+        }, 15000);
+
+        return () => clearInterval(timer);
+    }, []);
+
+    const hasWeightAccess = canAccessWeightControl(
+        user?.premiumPackage,
+        premiumNow
+    );
+
+    const week = useWeightWeek(
+        hasWeightAccess ? user?.uid : null
+    );
+
+    const entries = useWeightEntries(
+        hasWeightAccess ? week?.id : null
+    );
+
 
   const [kg, setKg] = useState(0);
   const [g, setG] = useState(0);
 
   const start = async () => {
-    if (!kg) return;
+    if (!hasWeightAccess || !auth.currentUser || !kg) return;
     const weight = parseFloat(`${kg}.${g || 0}`);
     await createWeek(auth.currentUser.uid, weight);
     setG("");
   };
 
   const add = async () => {
-    if (!kg) return;
+    if (!hasWeightAccess || !auth.currentUser || !week?.id || !kg) return;
     const weight = parseFloat(`${kg}.${g || 0}`);
     await addWeightEntry(auth.currentUser.uid, week.id, weight);
     setG("");
@@ -39,6 +71,43 @@ export default function WeightDashboard() {
   const chartData = useMemo(() => formatChartData(entries), [entries]);
   const stats = useMemo(() => calculateWeeklyStats(entries), [entries]);
   const ai = useMemo(() => buildAI(entries, week), [entries, week]);
+
+    if (authLoading) {
+        return (
+            <div className="weight__container">
+                <p className="text-center">
+                    Loading your account…
+                </p>
+            </div>
+        );
+    }
+
+    if (!hasWeightAccess) {
+        return (
+            <div className="weight__container">
+                <div className="card bg-dark text-white shadow-lg p-4 mb-4">
+                    <BMICalculator />
+                </div>
+
+                <div className="card bg-dark text-white shadow-lg p-4 text-center">
+                    <h2>Unlock Weight Control</h2>
+
+                    <p>
+                        Track your weight, monitor progress,
+                        explore weekly statistics, and receive
+                        personalized insights with Advanced or Pro.
+                    </p>
+
+                    <Link
+                        to="/premium"
+                        className="btn btn-custome text-white rounded-5 px-4 py-2 fw-semibold mt-3"
+                    >
+                        Explore Premium Plans
+                    </Link>
+                </div>
+            </div>
+        );
+    }
 
   if (!week) {
     return (
@@ -99,7 +168,6 @@ export default function WeightDashboard() {
 
   return (
     <div className="weight__container">
-
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -189,9 +257,9 @@ export default function WeightDashboard() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4 }}
-          className="card bg-dark text-white shadow-lg p-4"
+          className="card bg-dark text-white shadow-lg p-4 mb-4"
         >
-          <p className="h5 mb-2 d-flex align-items-center gap-2">
+            <p className="h5 mb-2 d-flex align-items-center gap-2">
             <span></span> AI Assistant
           </p>
           <p className="fs-6 fw-semibold text-uppercase" style={{ color: "var(--first-color)" }}>{ai.message}</p>

@@ -19,7 +19,7 @@ const Terms = () => {
     <p><strong>Country</strong> refers to:  Ukraine</p>
     </li>
     <li>
-    <p><strong>Company</strong> (referred to as either &quot;the Company&quot;, &quot;We&quot;, &quot;Us&quot; or &quot;Our&quot; in this Agreement) refers to recrun.</p>
+    <p><strong>Company</strong> (referred to as either &quot;the Company&quot;, &quot;We&quot;, &quot;Us&quot; or &quot;Our&quot; in this Agreement) refers to FiTrack.</p>
     </li>
     <li>
     <p><strong>Device</strong> means any device that can access the Service such as a computer, a cell phone or a digital tablet.</p>
@@ -34,7 +34,7 @@ const Terms = () => {
     <p><strong>Third-party Social Media Service</strong> means any services or content (including data, information, products or services) provided by a third-party that may be displayed, included or made available by the Service.</p>
     </li>
     <li>
-    <p><strong>Website</strong> refers to recrun, accessible from <a href="https://recruns.pro/" rel="external nofollow noopener" target="_blank">https://recruns.pro/</a></p>
+    <p><strong>Website</strong> refers to FiTrack, accessible from <a href="https://FiTrack.pro/" rel="external nofollow noopener" target="_blank">https://FiTrack.pro/</a></p>
     </li>
     <li>
     <p><strong>You</strong> means the individual accessing or using the Service, or the company, or other legal entity on behalf of which such individual is accessing or using the Service, as applicable.</p>
@@ -83,7 +83,7 @@ const Terms = () => {
     <h2>Contact Us</h2>
     <p>If you have any questions about these Terms and Conditions, You can contact us:</p>
     <ul>
-    <li>By visiting this page on our website: <a href="https://recruns.pro" rel="external nofollow noopener" target="_blank">https://recruns.pro</a></li>
+    <li>By visiting this page on our website: <a href="https://fiterc.pro" rel="external nofollow noopener" target="_blank">https://FiTrack.pro</a></li>
     </ul>
   </div>
  );

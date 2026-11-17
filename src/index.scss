@@ -6,6 +6,9 @@
           max-height: 60vh !important;
           margin-top: 100px;
     }
+    .general-wrapper {
+    padding: 200px 0 0 0;
+}
 }
 @media screen and (max-width: 1024px) {
     .lens__container{
@@ -14,10 +17,6 @@
     .team__container {
     padding-top: 0 !important;
     }
-    .section {
-    padding-top: 4rem !important;
-    padding-bottom: 4rem !important;
-}
 }
 
 @media screen and (max-width: 768px) {
@@ -167,27 +166,14 @@ z-index: 1050;
   justify-content: center;
   padding: 20px !important;
 }
-.lensdetails-card {
-  width: 360px;
-  max-width: 360px;
-  background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.08);
-  padding: 10px;
-}
 .chat-window {
   max-width: 330px;
-}
-.section-about {
-    padding-top: 2rem !important;
-    padding-bottom: 2.5rem !important;
 }
 .friends-list {
   width: 320px;
 }
 .version {
-    color: var(--first-color) !important;
-    opacity: 0.6;
+    opacity: 0.4 !important;
 }
 .notifications-popup {
     width: 300px !important;
@@ -199,15 +185,7 @@ z-index: 1050;
 .popup-overlay-race {
     top: 0;
 }
-.unread-badge {
-    position: absolute !important;
-    top: -5.5px !important;
-    right: -1.5px !important;
-    width: 10px !important;
-    height: 10px !important;
-    border-radius: 50% !important;
-    background: var(--first-color) !important;
-}
+
 .payment-container {
   padding-top: 0px !important;
 }
@@ -222,10 +200,40 @@ z-index: 1050;
     padding: 0 !important;
     margin: 0 !important;
 }
+.cartpage-wrapper {
+      padding: 50px 0 !important;
+}
+    .unread-badge-message {
+      background: var(--first-color);
+      color: #fff;
+      border-radius: 50%;
+      font-size: 18px !important;
+      padding: 14px !important;
+      font-weight: 700;
+      width: 30px !important;
+      height: 30px !important;
+      display: flex !important;
+      text-align: center !important;
+      justify-content: center !important;
+      align-items: center !important;
+    }
+    .container-runplan {
+        padding-top: 20px !important;
+    }
+    
 }
 @media screen and (max-width: 576px) {
 }
 
 @media screen and (max-width: 460px) {
 }
-
+.avatar-wrapper {
+    margin-left: 15px;
+}
+.username-block {
+    padding-top: 70px;
+    padding-left: 25px;
+}
+.email-search-res {
+    padding-left: 25px;
+}

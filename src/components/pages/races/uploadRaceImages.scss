@@ -1,0 +1,200 @@
+.upload-race-images {
+  margin-top: 30px;
+}
+
+.upload-drop-zone {
+  width: 100%;
+  min-height: 260px;
+
+  border: 2px dashed rgba(255, 255, 255, 0.15);
+  border-radius: 18px;
+
+  background: rgba(255, 255, 255, 0.02);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  padding: 35px;
+
+  cursor: pointer;
+
+  transition: 0.25s ease;
+
+  color: white;
+
+  &:hover {
+    border-color: #017b6e;
+    background: rgba(1, 123, 110, 0.08);
+  }
+
+  &.active {
+    border-color: #017b6e;
+    background: rgba(1, 123, 110, 0.15);
+    transform: scale(0.99);
+  }
+
+  svg {
+    color: #017b6e;
+  }
+
+  h5 {
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+
+  p {
+    margin-bottom: 20px;
+  }
+}
+
+.upload-preview-card {
+  position: relative;
+
+  overflow: hidden;
+
+  border-radius: 14px;
+
+  background: #1c1c1c;
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+
+  transition: 0.25s;
+
+  img {
+    width: 100%;
+
+    height: 180px;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition: 0.3s;
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+
+    img {
+      transform: scale(1.05);
+    }
+  }
+}
+
+.remove-image {
+  position: absolute;
+
+  top: 10px;
+
+  right: 10px;
+
+  width: 36px;
+
+  height: 36px;
+
+  border-radius: 50%;
+
+  border: none;
+
+  background: rgba(0, 0, 0, 0.65);
+
+  color: white;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  transition: 0.25s;
+
+  font-size: 20px;
+
+  &:hover {
+    background: #dc3545;
+
+    transform: scale(1.1);
+  }
+}
+
+.progress {
+  border-radius: 20px;
+
+  overflow: hidden;
+}
+
+.progress-bar {
+  background: linear-gradient(90deg, #017b6e, #00c6a9);
+}
+
+.upload-race-images {
+  .btn {
+    min-width: 180px;
+  }
+}
+
+@media (max-width: 992px) {
+  .upload-drop-zone {
+    min-height: 220px;
+
+    padding: 25px;
+  }
+
+  .upload-preview-card {
+    img {
+      height: 160px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .upload-drop-zone {
+    min-height: 190px;
+
+    padding: 20px;
+  }
+
+  .upload-preview-card {
+    img {
+      height: 140px;
+    }
+  }
+
+  .remove-image {
+    width: 32px;
+
+    height: 32px;
+
+    font-size: 18px;
+  }
+
+  .upload-race-images {
+    .btn {
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .upload-preview-card {
+    img {
+      height: 120px;
+    }
+  }
+
+  .upload-drop-zone {
+    padding: 18px;
+
+    h5 {
+      font-size: 18px;
+    }
+
+    p {
+      font-size: 14px;
+    }
+  }
+}

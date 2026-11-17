@@ -1,0 +1,431 @@
+.fitrack-profile { display: inline-flex; align-items: center; }
+.fitrack-profile-trigger { display: inline-flex; align-items: center; gap: 8px; padding: 5px 7px; border: 1px solid transparent; border-radius: 999px; background: transparent; color: #fff; cursor: pointer; transition: background .2s, border-color .2s; }
+.fitrack-profile-trigger:hover, .fitrack-profile-trigger.is-active { background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.12); }
+.fitrack-profile-trigger:focus-visible, .fitrack-profile-link:focus-visible { outline: 2px solid #db3206; outline-offset: 3px; }
+.fitrack-profile-avatar { width: 32px; height: 32px; position: relative; display: grid; place-items: center; }
+.fitrack-profile-avatar img, .fitrack-profile-avatar > span:first-child, .fitrack-profile-header-avatar img, .fitrack-profile-header-avatar > span { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+.fitrack-profile-avatar > span:first-child, .fitrack-profile-header-avatar > span { display: grid; place-items: center; background: #323a47; color: #fff; font-weight: 700; }
+.fitrack-profile-pro { position: absolute; top: -5px; right: -6px; color: #ffd65a; font-size: 16px; }
+.fitrack-profile-notification { position: absolute; bottom: -2px; right: -3px; width: 8px; height: 8px; background: #db3206; border: 2px solid #151922; border-radius: 50%; }
+.fitrack-profile-chevron { font-size: 11px; opacity: .6; transition: transform .2s; }
+.fitrack-profile-trigger.is-active .fitrack-profile-chevron { transform: rotate(180deg); }
+.fitrack-profile-panel { position: fixed; width: min(310px, calc(100vw - 24px)); z-index: 100100; padding: 8px; border: 1px solid rgba(255,255,255,.12); border-radius: 16px; background: #151922; color: #fff; box-shadow: 0 20px 65px rgba(0,0,0,.5); animation: fitrackProfileIn .18s ease-out both; }
+@keyframes fitrackProfileIn { from { opacity: 0; transform: translateY(-7px) scale(.98); } to { opacity: 1; transform: none; } }
+.fitrack-profile-header { display: flex; align-items: center; gap: 12px; padding: 14px 12px 17px; border-bottom: 1px solid rgba(255,255,255,.08); }
+.fitrack-profile-header-avatar { width: 43px; height: 43px; flex: 0 0 43px; }
+.fitrack-profile-identity { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.fitrack-profile-identity strong { font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.fitrack-profile-identity > span { color: #9ca3af; font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.fitrack-profile-header-pro { color: #ffd65a; flex: 0 0 auto; }
+.fitrack-profile-links { padding: 8px 0; }
+.fitrack-profile-link { display: flex; width: 100%; align-items: center; gap: 12px; min-height: 45px; padding: 0 12px; border: 0; border-radius: 9px; background: transparent; color: #e9edf2; font: inherit; font-size: 13px; text-align: left; text-decoration: none; cursor: pointer; transition: background .15s, color .15s; }
+.fitrack-profile-link > svg { width: 17px; height: 17px; color: #929ba9; }
+.fitrack-profile-link:hover, .fitrack-profile-link.is-current { color: #fff; background: rgba(255,255,255,.075); }
+.fitrack-profile-link.is-current > svg, .fitrack-profile-link:hover > svg { color: #db3206; }
+.fitrack-profile-link-arrow { margin-left: auto; color: #697282; font-size: 20px; }
+.fitrack-profile-footer { padding-top: 7px; border-top: 1px solid rgba(255,255,255,.08); }
+.fitrack-profile-logout { color: #c9cdd5; }
+.fitrack-profile-logout:hover, .fitrack-profile-logout:hover > svg { color: #ff7a66; }
+@media (max-width: 991px) { .fitrack-profile-trigger { padding: 4px; } .fitrack-profile-avatar { width: 34px; height: 34px; } .fitrack-profile-chevron { display: none; } .fitrack-profile-panel { max-height: calc(100dvh - 90px); overflow-y: auto; } .fitrack-profile-link { min-height: 49px; font-size: 14px; } }
+@media (prefers-reduced-motion: reduce) { .fitrack-profile-panel { animation: none; } }
+
+/* Fixed avatar sizing, resistant to navbar / Bootstrap image rules */
+.fitrack-profile .fitrack-profile-avatar {
+    display: block; width: 34px !important; height: 34px !important;
+    min-width: 34px; max-width: 34px; min-height: 34px; max-height: 34px;
+    flex: 0 0 34px;
+}
+.fitrack-profile .fitrack-profile-avatar > img,
+.fitrack-profile-panel .fitrack-profile-header-avatar > img {
+    display: block; width: 100% !important; height: 100% !important;
+    max-width: 100% !important; max-height: 100% !important;
+    aspect-ratio: 1 / 1; object-fit: cover; border-radius: 50%;
+}
+.fitrack-profile-panel .fitrack-profile-header-avatar {
+    width: 43px !important; height: 43px !important; flex: 0 0 43px;
+}
+
+/* Mobile account trigger — compact premium capsule */
+@media (max-width: 991px) {
+    .fitrack-profile {
+        display: inline-flex;
+        flex: 0 0 auto;
+        min-width: 0;
+    }
+
+    .fitrack-profile .fitrack-profile-trigger {
+        box-sizing: border-box;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        width: auto;
+        height: 43px;
+        min-height: 43px;
+        max-width: 90px;
+        padding: 4px 9px 4px 5px;
+        border: 1px solid rgba(255, 255, 255, .19);
+        border-radius: 999px;
+        background: linear-gradient(145deg, rgba(255,255,255,.095), rgba(255,255,255,.025));
+        box-shadow: inset 0 1px 0 rgba(255,255,255,.07), 0 3px 12px rgba(0,0,0,.13);
+        color: #f4f6f8;
+        line-height: 1;
+        -webkit-tap-highlight-color: transparent;
+        transition: border-color .2s ease, background .2s ease, box-shadow .2s ease, transform .2s ease;
+    }
+
+    .fitrack-profile .fitrack-profile-trigger:active { transform: scale(.96); }
+    .fitrack-profile .fitrack-profile-trigger:hover,
+    .fitrack-profile .fitrack-profile-trigger.is-active {
+        border-color: rgba(219, 50, 6, .65);
+        background: linear-gradient(145deg, rgba(219,50,6,.16), rgba(255,255,255,.035));
+        box-shadow: 0 0 0 3px rgba(219,50,6,.09), inset 0 1px 0 rgba(255,255,255,.08);
+    }
+
+    .fitrack-profile .fitrack-profile-avatar {
+        width: 32px !important;
+        height: 32px !important;
+        min-width: 32px;
+        max-width: 32px;
+        min-height: 32px;
+        max-height: 32px;
+        flex: 0 0 32px;
+        border-radius: 50%;
+    }
+
+    .fitrack-profile .fitrack-profile-chevron {
+        display: block;
+        width: 11px;
+        height: 11px;
+        flex: 0 0 11px;
+        margin: 0;
+        opacity: .78;
+        color: #d6dbe2;
+        transform-origin: center;
+        transition: transform .25s cubic-bezier(.2,.8,.2,1), color .2s ease;
+    }
+
+    .fitrack-profile .fitrack-profile-trigger.is-active .fitrack-profile-chevron {
+        transform: rotate(180deg);
+        color: #ff805c;
+    }
+}
+
+@media (max-width: 360px) {
+    .fitrack-profile .fitrack-profile-trigger { gap: 5px; padding-right: 7px; }
+}
+
+
+/* Desktop account trigger — same premium capsule as mobile */
+@media (min-width: 992px) {
+    .fitrack-profile { display: inline-flex; flex: 0 0 auto; min-width: 0; }
+    .fitrack-profile .fitrack-profile-trigger {
+        box-sizing: border-box;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        width: auto;
+        height: 43px;
+        min-height: 43px;
+        max-width: 90px;
+        padding: 4px 9px 4px 5px;
+        border: 1px solid rgba(255,255,255,.19);
+        border-radius: 999px;
+        background: linear-gradient(145deg, rgba(255,255,255,.095), rgba(255,255,255,.025));
+        box-shadow: inset 0 1px 0 rgba(255,255,255,.07), 0 3px 12px rgba(0,0,0,.13);
+        color: #f4f6f8;
+        line-height: 1;
+        transition: border-color .2s ease, background .2s ease, box-shadow .2s ease, transform .2s ease;
+    }
+    .fitrack-profile .fitrack-profile-trigger:active { transform: scale(.96); }
+    .fitrack-profile .fitrack-profile-trigger:hover,
+    .fitrack-profile .fitrack-profile-trigger.is-active {
+        border-color: rgba(219,50,6,.65);
+        background: linear-gradient(145deg, rgba(219,50,6,.16), rgba(255,255,255,.035));
+        box-shadow: 0 0 0 3px rgba(219,50,6,.09), inset 0 1px 0 rgba(255,255,255,.08);
+    }
+    .fitrack-profile .fitrack-profile-avatar {
+        width: 32px !important;
+        height: 32px !important;
+        min-width: 32px;
+        max-width: 32px;
+        min-height: 32px;
+        max-height: 32px;
+        flex: 0 0 32px;
+        border-radius: 50%;
+    }
+    .fitrack-profile .fitrack-profile-chevron {
+        display: block;
+        width: 11px;
+        height: 11px;
+        flex: 0 0 11px;
+        margin: 0;
+        opacity: .78;
+        color: #d6dbe2;
+        transform-origin: center;
+        transition: transform .25s cubic-bezier(.2,.8,.2,1), color .2s ease;
+    }
+    .fitrack-profile .fitrack-profile-trigger.is-active .fitrack-profile-chevron {
+        transform: rotate(180deg);
+        color: #ff805c;
+    }
+}
+/* ==========================================
+   FITRACK — PROFILE NOTIFICATIONS
+========================================== */
+
+.fitrack-profile-avatar {
+    position: relative;
+    isolation: isolate;
+}
+
+.fitrack-profile-message-count {
+    position: absolute;
+    z-index: 5;
+    top: -8px;
+    right: -12px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 19px;
+    height: 19px;
+    padding: 0 5px;
+
+    border: 2px solid #151922;
+    border-radius: 999px;
+
+    background: #db3206;
+    color: #fff;
+
+    font-size: 10px;
+    font-weight: 800;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+
+    box-shadow: 0 3px 9px rgba(219, 50, 6, .3);
+    pointer-events: none;
+}
+
+.fitrack-profile-request-indicator {
+    position: absolute;
+    z-index: 5;
+    bottom: -7px;
+    right: -10px;
+
+    display: grid;
+    place-items: center;
+
+    width: 19px;
+    height: 19px;
+
+    border: 2px solid #151922;
+    border-radius: 50%;
+
+    background: #283c35;
+    color: #79e5ad;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, .25);
+    pointer-events: none;
+
+    svg {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+/* Dropdown notification counters */
+
+.fitrack-profile-menu-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 23px;
+    height: 21px;
+    margin-left: auto;
+    padding: 0 7px;
+
+    border: 1px solid rgba(255, 118, 80, .2);
+    border-radius: 7px;
+
+    background: rgba(219, 50, 6, .16);
+    color: #ff8a68;
+
+    font-size: 11px;
+    font-weight: 800;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+}
+
+.fitrack-profile-menu-count.is-request {
+    border-color: rgba(121, 229, 173, .16);
+    background: rgba(121, 229, 173, .09);
+    color: #79e5ad;
+}
+
+.fitrack-profile-request-link {
+    svg {
+        color: #79e5ad;
+    }
+
+    &:hover svg {
+        color: #79e5ad;
+    }
+}
+
+@media (max-width: 991px) {
+    .fitrack-profile-message-count {
+        top: -7px;
+        right: -11px;
+    }
+
+    .fitrack-profile-request-indicator {
+        bottom: -7px;
+        right: -9px;
+    }
+}
+/* ==========================================
+   PROFILE TRIGGER — UNREAD COUNT
+========================================== */
+
+.fitrack-profile .fitrack-profile-trigger-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    min-width: 21px;
+    height: 21px;
+    padding: 0 6px;
+    margin-left: 1px;
+
+    border: 1px solid rgba(255, 120, 80, 0.35);
+    border-radius: 7px;
+
+    background: rgba(219, 50, 6, 0.18);
+    color: #ff805c;
+
+    font-size: 11px;
+    font-weight: 800;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+
+    box-shadow: 0 2px 8px rgba(219, 50, 6, 0.1);
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.fitrack-profile .fitrack-profile-trigger:hover,
+.fitrack-profile .fitrack-profile-trigger.is-active {
+    .fitrack-profile-trigger-count {
+        background: #db3206;
+        border-color: #db3206;
+        color: #fff;
+    }
+}
+
+@media (max-width: 991px) {
+    .fitrack-profile .fitrack-profile-trigger-count {
+        min-width: 21px;
+        height: 21px;
+        padding: 0 5px;
+        font-size: 10px;
+    }
+}
+/* ==========================================
+   PROFILE TRIGGER — INLINE NOTIFICATIONS
+========================================== */
+
+.fitrack-profile {
+    .fitrack-profile-trigger {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        gap: 7px;
+
+        width: auto;
+        max-width: none;
+
+        padding: 4px 9px 4px 5px;
+    }
+
+    .fitrack-profile-avatar {
+        flex: 0 0 32px !important;
+
+        width: 32px !important;
+        height: 32px !important;
+        min-width: 32px !important;
+        min-height: 32px !important;
+        max-width: 32px !important;
+        max-height: 32px !important;
+
+        aspect-ratio: 1 / 1;
+        border-radius: 50%;
+    }
+
+    .fitrack-profile-trigger-count {
+        flex: 0 0 auto;
+        margin: 0;
+    }
+
+    .fitrack-profile-trigger-request {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        flex: 0 0 22px;
+
+        width: 22px;
+        height: 22px;
+
+        border: 1px solid rgba(121, 229, 173, 0.25);
+        border-radius: 7px;
+
+        background: rgba(121, 229, 173, 0.1);
+        color: #79e5ad;
+
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+
+        transition:
+            background 0.2s ease,
+            border-color 0.2s ease,
+            color 0.2s ease;
+
+        svg {
+            width: 12px;
+            height: 12px;
+        }
+    }
+
+    .fitrack-profile-trigger:hover,
+    .fitrack-profile-trigger.is-active {
+        .fitrack-profile-trigger-request {
+            background: rgba(121, 229, 173, 0.2);
+            border-color: rgba(121, 229, 173, 0.45);
+            color: #a0f5c7;
+        }
+    }
+}
+
+@media (max-width: 991px) {
+    .fitrack-profile {
+        .fitrack-profile-trigger {
+            max-width: none;
+            gap: 6px;
+            padding-right: 8px;
+        }
+
+        .fitrack-profile-trigger-request {
+            flex-basis: 21px;
+            width: 21px;
+            height: 21px;
+        }
+    }
+}

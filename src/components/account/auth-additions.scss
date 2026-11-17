@@ -1,0 +1,84 @@
+/* Append to your existing AuthModal.scss; keep its current visual styles. */
+.modal-content {
+    .ft-auth-form {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+    }
+
+    .ft-auth-form__links {
+        display: flex;
+        justify-content: flex-end;
+        margin: -3px 0 15px;
+    }
+
+    .ft-auth-form__links button,
+    .ft-auth-text-button {
+        width: auto;
+        padding: 6px 0;
+        border: 0;
+        background: transparent;
+        color: var(--first-color, #db3206);
+        font: inherit;
+        font-size: 12px;
+        font-weight: 700;
+        cursor: pointer;
+    }
+
+    .ft-auth-form__links button:hover,
+    .ft-auth-text-button:hover {
+        text-decoration: underline;
+    }
+
+    .ft-auth-flow {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+
+        h3 {
+            margin: 0;
+            color: #f8fafc;
+            font-size: 22px;
+        }
+
+        > p {
+            margin: 0 0 8px;
+            overflow-wrap: anywhere;
+        }
+    }
+
+    .ft-auth-primary {
+        min-height: 48px;
+        padding: 12px;
+        border: 0;
+        border-radius: 10px;
+        background: var(--first-color, #db3206);
+        color: white;
+        font: inherit;
+        font-weight: 750;
+        cursor: pointer;
+    }
+
+    .ft-auth-error,
+    .ft-auth-success {
+        margin: 4px 0 14px;
+        padding: 12px;
+        border-radius: 9px;
+        font-size: 12px;
+        line-height: 1.5;
+        overflow-wrap: anywhere;
+    }
+
+    .ft-auth-error {
+        background: rgba(255, 86, 86, .10);
+        color: #ff9b9b;
+    }
+
+    .ft-auth-success {
+        background: rgba(72, 190, 130, .10);
+        color: #8cdeb2;
+    }
+
+    button:disabled { opacity: .55; cursor: not-allowed; }
+}

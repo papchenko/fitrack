@@ -1,38 +1,74 @@
 [
     {
         "id": 1,
-        "title": "Sticker (Red Edition)",
-        "description": "Branded Sticker by RecRun",
+        "title": "Sticker (Classic Edition)",
+        "description": "Branded Sticker by FiTrack",
         "size": "34 x 34 / 64 x 64",
-        "price": "90 UAH",
+        "price": "180 ₴",
         "rating": 5.0,
         "image": "/sticker1.png"
     },
     {
         "id": 2,
-        "title": "Sticker (90-x Edition)",
-        "description": "Branded Sticker by RecRun",
+        "title": "Sticker (80-x Edition)",
+        "description": "Branded Sticker by FiTrack",
         "size": "34 x 34 / 64 x 64",
-        "price": "90 UAH",
+        "price": "180 ₴",
         "rating": 5.0,
-        "image": "/sticker2-1.png"
+        "image": "/sticker2.png"
     },
     {
         "id": 3,
-        "title": "Sticker (White Edition)",
-        "description": "Branded Sticker by RecRun",
+        "title": "Sticker (Mountains Edition)",
+        "description": "Branded Sticker by FiTrack",
         "size": "34 x 34 / 64 x 64",
-        "price": "90 UAH",
+        "price": "180 ₴",
         "rating": 4.5,
         "image": "/sticker3.png"
     },
         {
         "id": 4,
         "title": "Sticker (Iron Edition)",
-        "description": "Branded Sticker by RecRun",
+        "description": "Branded Sticker by FiTrack",
         "size": "34 x 34 / 64 x 64",
-        "price": "90 UAH",
+        "price": "180 ₴",
         "rating": 4.1,
         "image": "/sticker4.png"
+    },
+        {
+        "id": 5,
+        "title": "Sticker (Ice Edition)",
+        "description": "Branded Sticker by FiTrack",
+        "size": "34 x 34 / 64 x 64",
+        "price": "180 ₴",
+        "rating": 4.1,
+        "image": "/sticker5.png"
+    },
+        {
+        "id": 6,
+        "title": "Sticker (White Edition)",
+        "description": "Branded Sticker by FiTrack",
+        "size": "34 x 34 / 64 x 64",
+        "price": "180 ₴",
+        "rating": 4.1,
+        "image": "/sticker6.png"
+    },
+        {
+        "id": 7,
+        "title": "Sticker (Red Edition)",
+        "description": "Branded Sticker by FiTrack",
+        "size": "34 x 34 / 64 x 64",
+        "price": "180 ₴",
+        "rating": 4.1,
+        "image": "/sticker7.png"
+    },
+        {
+        "id": 8,
+        "title": "Sticker (90-x Edition)",
+        "description": "Branded Sticker by FiTrack",
+        "size": "34 x 34 / 64 x 64",
+        "price": "180 ₴",
+        "rating": 5.0,
+        "image": "/sticker8.png"
     }
 ]
